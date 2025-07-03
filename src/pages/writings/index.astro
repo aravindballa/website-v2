@@ -128,24 +128,48 @@ function formatDate(date: Date): string {
   const filterButtons = document.querySelectorAll('.filter-btn');
   const postCards = document.querySelectorAll('.post-card');
 
+  // Function to apply filter
+  function applyFilter(filter: string | null) {
+    // Update active button
+    filterButtons.forEach((btn) => {
+      if (btn.getAttribute('data-filter') === filter) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    // Filter posts
+    postCards.forEach((card) => {
+      const htmlCard = card as HTMLElement;
+      if (!filter || filter === 'all') {
+        htmlCard.style.display = 'block';
+      } else {
+        const postType = card.getAttribute('data-type');
+        htmlCard.style.display = postType === filter ? 'block' : 'none';
+      }
+    });
+
+    // Update URL
+    const url = new URL(window.location.href);
+    if (!filter || filter === 'all') {
+      url.searchParams.delete('filter');
+    } else {
+      url.searchParams.set('filter', filter);
+    }
+    window.history.pushState({}, '', url.toString());
+  }
+
+  // Apply filter from URL on page load
+  const urlParams = new URLSearchParams(window.location.search);
+  const initialFilter = urlParams.get('filter') || 'all';
+  applyFilter(initialFilter);
+
+  // Handle filter button clicks
   filterButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const filter = button.getAttribute('data-filter');
-
-      // Update active button
-      filterButtons.forEach((btn) => btn.classList.remove('active'));
-      button.classList.add('active');
-
-      // Filter posts
-      postCards.forEach((card) => {
-        const htmlCard = card as HTMLElement;
-        if (filter === 'all') {
-          htmlCard.style.display = 'block';
-        } else {
-          const postType = card.getAttribute('data-type');
-          htmlCard.style.display = postType === filter ? 'block' : 'none';
-        }
-      });
+      applyFilter(filter);
     });
   });
 </script>
