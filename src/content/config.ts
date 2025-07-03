@@ -1,7 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 
 const writingsCollection = defineCollection({
-  type: 'content',
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -15,7 +14,6 @@ const writingsCollection = defineCollection({
 });
 
 const memosCollection = defineCollection({
-  type: 'content',
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -29,7 +27,6 @@ const memosCollection = defineCollection({
 });
 
 const bookshelfCollection = defineCollection({
-  type: 'content',
   schema: z.object({
     title: z.string(),
     type: z.literal('BookNote'),
@@ -42,7 +39,6 @@ const bookshelfCollection = defineCollection({
 });
 
 const hackletterCollection = defineCollection({
-  type: 'content',
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -54,7 +50,6 @@ const hackletterCollection = defineCollection({
 });
 
 const talksCollection = defineCollection({
-  type: 'content',
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -68,7 +63,6 @@ const talksCollection = defineCollection({
 });
 
 const notesCollection = defineCollection({
-  type: 'content',
   schema: z.object({
     title: z.string(),
     date: z.coerce.date().optional(),
