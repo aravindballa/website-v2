@@ -31,7 +31,9 @@ const siteTitle = title === 'Home' ? 'Aravind Balla' : `${title} | Aravind Balla
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#FAFAF9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1C1917" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     
     <!-- Primary Meta Tags -->
@@ -65,7 +67,7 @@ const siteTitle = title === 'Home' ? 'Aravind Balla' : `${title} | Aravind Balla
   </head>
   <body class="min-h-screen flex flex-col">
     <Header />
-    <main class="flex-grow container mx-auto px-4 py-8 max-w-4xl">
+    <main class="flex-grow container mx-auto px-4 py-16 max-w-4xl">
       <slot />
     </main>
     <Footer />

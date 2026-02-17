@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getCollection } from 'astro:content';
 import { calculateReadingTime, formatReadingTime } from '../../utils/readingTime';
 
@@ -29,10 +30,13 @@ function formatDate(date: Date): string {
 ---
 
 <Layout title="Writings">
-  <div class="space-y-8">
+  <Breadcrumb crumbs={[
+    { label: 'Aravind Balla', href: '/' },
+  ]} />
+  <div class="space-y-12">
     <div>
-      <h1 class="text-4xl font-bold font-poppins mb-4">Writings</h1>
-      <p class="text-lg text-gray-600 dark:text-gray-400">
+      <h1 class="text-4xl font-bold font-poppins mb-6">Writings</h1>
+      <p class="text-lg text-[var(--muted)]">
         Thoughts on web development, productivity, and building products.
       </p>
     </div>
@@ -41,26 +45,26 @@ function formatDate(date: Date): string {
     <div class="flex gap-2" id="filter-buttons">
       <button
         data-filter="all"
-        class="filter-btn px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors active"
+        class="filter-btn px-4 py-2 rounded-lg border border-[var(--border)] hover:bg-[var(--surface)] transition-colors active"
       >
         All
       </button>
       <button
         data-filter="writings"
-        class="filter-btn px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        class="filter-btn px-4 py-2 rounded-lg border border-[var(--border)] hover:bg-[var(--surface)] transition-colors"
       >
         Blog posts
       </button>
       <button
         data-filter="memos"
-        class="filter-btn px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        class="filter-btn px-4 py-2 rounded-lg border border-[var(--border)] hover:bg-[var(--surface)] transition-colors"
       >
         Memos
       </button>
     </div>
 
     <!-- Posts Grid -->
-    <div class="grid gap-6 md:grid-cols-2" id="posts-grid">
+    <div class="grid gap-8 md:grid-cols-2" id="posts-grid">
       {
         allPosts.map((post) => {
           const isMemo = post.collection === 'memos';
@@ -69,7 +73,7 @@ function formatDate(date: Date): string {
 
           return (
             <article
-              class={`post-card group relative overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 hover:shadow-lg transition-all duration-300 ${post.data.banner && post.data.banner.trim() ? 'row-span-2' : ''}`}
+              class={`post-card group relative overflow-hidden rounded-lg border border-[var(--border)] hover:shadow-lg transition-all duration-300 ${post.data.banner && post.data.banner.trim() ? 'row-span-2' : ''}`}
               data-type={isMemo ? 'memos' : 'writings'}
             >
               {post.data.banner && post.data.banner.trim() && (
@@ -82,28 +86,28 @@ function formatDate(date: Date): string {
                 </div>
               )}
 
-              <div class="p-6">
-                <div class="flex items-start justify-between mb-2">
+              <div class="p-8">
+                <div class="flex items-start justify-between mb-3">
                   <h3 class="text-xl font-semibold font-poppins">
                     <a
                       href={postUrl}
-                      class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                      class="hover:text-[var(--accent)] transition-colors"
                     >
                       {post.data.title}
                     </a>
                   </h3>
                   {isMemo && (
-                    <span class="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-600 dark:text-gray-400">
+                    <span class="text-xs px-2 py-1 bg-[var(--surface)] rounded-full text-[var(--muted)]">
                       memo
                     </span>
                   )}
                 </div>
 
                 {post.data.description && post.data.description.trim() && (
-                  <p class="text-gray-600 dark:text-gray-400 mb-3">{post.data.description}</p>
+                  <p class="text-[var(--muted)] mb-3">{post.data.description}</p>
                 )}
 
-                <div class="flex items-center text-sm text-gray-500 dark:text-gray-500">
+                <div class="flex items-center text-sm text-[var(--muted)]">
                   <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
                   <span class="mx-2">·</span>
                   <span>{formatReadingTime(readingTime)}</span>

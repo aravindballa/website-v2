@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getCollection } from 'astro:content';
 
 // Get all talks
@@ -21,10 +22,13 @@ function formatDate(date: Date): string {
 ---
 
 <Layout title="Talks" description="Conference talks and presentations by Aravind Balla">
+  <Breadcrumb crumbs={[
+    { label: 'Aravind Balla', href: '/' },
+  ]} />
   <div class="space-y-8">
     <div>
       <h1 class="text-4xl font-bold font-poppins mb-4">Talks</h1>
-      <p class="text-lg text-gray-600 dark:text-gray-400">
+      <p class="text-lg text-[var(--muted)]">
         Conference talks and presentations I've given at various events.
       </p>
     </div>
@@ -33,40 +37,40 @@ function formatDate(date: Date): string {
     <div class="space-y-6">
       {publishedTalks.length > 0 ? (
         publishedTalks.map((talk) => (
-          <article class="border border-gray-200 dark:border-gray-800 rounded-lg p-6 hover:shadow-lg transition-shadow">
+          <article class="border border-[var(--border)] rounded-lg p-6 hover:shadow-lg transition-shadow">
             <h3 class="text-xl font-semibold font-poppins mb-2">
-              <a href={`/talks/${talk.slug}`} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              <a href={`/talks/${talk.slug}`} class="hover:text-[var(--accent)] transition-colors">
                 {talk.data.title}
               </a>
             </h3>
             
             {talk.data.venue && (
-              <p class="text-gray-600 dark:text-gray-400 mb-2">
+              <p class="text-[var(--muted)] mb-2">
                 at {talk.data.venue}
               </p>
             )}
             
             {talk.data.description && (
-              <p class="text-gray-600 dark:text-gray-400 mb-3">
+              <p class="text-[var(--muted)] mb-3">
                 {talk.data.description}
               </p>
             )}
             
             <div class="flex items-center justify-between">
-              <time datetime={talk.data.date.toISOString()} class="text-sm text-gray-500 dark:text-gray-500">
+              <time datetime={talk.data.date.toISOString()} class="text-sm text-[var(--muted)]">
                 {formatDate(talk.data.date)}
               </time>
               
               <div class="flex items-center gap-4">
                 {talk.data.slides && (
-                  <a href={talk.data.slides} target="_blank" rel="noopener noreferrer" 
-                     class="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+                  <a href={talk.data.slides} target="_blank" rel="noopener noreferrer"
+                     class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline text-sm">
                     Slides
                   </a>
                 )}
                 {talk.data.video && (
-                  <a href={talk.data.video} target="_blank" rel="noopener noreferrer" 
-                     class="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+                  <a href={talk.data.video} target="_blank" rel="noopener noreferrer"
+                     class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline text-sm">
                     Video
                   </a>
                 )}
@@ -75,7 +79,7 @@ function formatDate(date: Date): string {
           </article>
         ))
       ) : (
-        <p class="text-gray-600 dark:text-gray-400">No talks yet. Coming soon!</p>
+        <p class="text-[var(--muted)]">No talks yet. Coming soon!</p>
       )}
     </div>
   </div>

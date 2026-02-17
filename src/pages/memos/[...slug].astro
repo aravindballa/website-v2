@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { calculateReadingTime, formatReadingTime } from '../../utils/readingTime';
 
@@ -35,21 +36,25 @@ function formatDate(date: Date): string {
   type="article"
   publishedTime={memo.data.date.toISOString()}
 >
-  <article class="max-w-3xl mx-auto">
+  <Breadcrumb crumbs={[
+    { label: 'Aravind Balla', href: '/' },
+    { label: 'Writings', href: '/writings' },
+  ]} />
+  <article>
     <header class="mb-8">
       <div class="flex items-center gap-2 mb-4">
-        <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900 rounded-full text-blue-600 dark:text-blue-400">
+        <span class="text-xs px-2 py-1 bg-[var(--surface)] rounded-full text-[var(--accent)]">
           memo
         </span>
-        <time datetime={memo.data.date.toISOString()} class="text-sm text-gray-500 dark:text-gray-400">
+        <time datetime={memo.data.date.toISOString()} class="text-sm text-[var(--muted)]">
           {formatDate(memo.data.date)}
         </time>
-        <span class="text-sm text-gray-500 dark:text-gray-400">·</span>
-        <span class="text-sm text-gray-500 dark:text-gray-400">{formatReadingTime(readingTime)}</span>
+        <span class="text-sm text-[var(--muted)]">·</span>
+        <span class="text-sm text-[var(--muted)]">{formatReadingTime(readingTime)}</span>
       </div>
       <h1 class="text-4xl font-bold font-poppins mb-4">{memo.data.title}</h1>
       {memo.data.description && (
-        <p class="text-xl text-gray-600 dark:text-gray-400 mb-4">
+        <p class="text-xl text-[var(--muted)] mb-4">
           {memo.data.description}
         </p>
       )}
@@ -59,13 +64,5 @@ function formatDate(date: Date): string {
       <Content />
     </div>
     
-    <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
-      <a href="/writings" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
-        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-        </svg>
-        Back to all writings
-      </a>
-    </footer>
   </article>
 </Layout>

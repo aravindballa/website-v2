@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* Import fonts from fontsource */
 @import '@fontsource/poppins/400.css';
@@ -10,15 +11,26 @@
 
 /* CSS Variables for theming */
 :root {
-  --background: #ffffff;
-  --foreground: #000000;
-  --headings: #000000;
+  color-scheme: light dark;
+  --background: #FAFAF9;
+  --foreground: #1C1917;
+  --headings: #0C0A09;
+  --muted: #78716C;
+  --accent: #D97706;
+  --accent-hover: #B45309;
+  --border: #E7E5E4;
+  --surface: #F5F5F4;
 }
 
 .dark {
-  --background: #000000;
-  --foreground: #ffffff;
-  --headings: #ffffff;
+  --background: #1C1917;
+  --foreground: #E7E5E4;
+  --headings: #FAFAF9;
+  --muted: #A8A29E;
+  --accent: #F59E0B;
+  --accent-hover: #FBBF24;
+  --border: #292524;
+  --surface: #292524;
 }
 
 /* Apply theme colors */
@@ -32,8 +44,16 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins', sans-serif;
   color: var(--headings);
+  text-wrap: balance;
 }
 
 .filter-btn.active {
-  @apply bg-blue-600 text-white border-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600;
+  background-color: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.filter-btn.active:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
 }
