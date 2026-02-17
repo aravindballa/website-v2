@@ -59,7 +59,7 @@ function formatDate(date: Date): string {
         {allPosts.length > 0 ? (
           allPosts.map((post) => {
             const isMemo = post.collection === 'memos';
-            const postUrl = isMemo ? `/memos/${post.slug}` : `/writings/${post.slug}`;
+            const postUrl = isMemo ? `/memos/${post.id}` : `/writings/${post.id}`;
 
             return (
               <article class="space-y-3">

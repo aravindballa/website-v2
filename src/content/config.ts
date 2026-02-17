@@ -1,6 +1,10 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
+
+const contentBase = './content';
 
 const writingsCollection = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: `${contentBase}/writings` }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -14,6 +18,7 @@ const writingsCollection = defineCollection({
 });
 
 const memosCollection = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: `${contentBase}/memos` }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -27,6 +32,7 @@ const memosCollection = defineCollection({
 });
 
 const bookshelfCollection = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: `${contentBase}/bookshelf` }),
   schema: z.object({
     title: z.string(),
     type: z.literal('BookNote'),
@@ -39,6 +45,7 @@ const bookshelfCollection = defineCollection({
 });
 
 const hackletterCollection = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: `${contentBase}/hackletter` }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -50,6 +57,7 @@ const hackletterCollection = defineCollection({
 });
 
 const talksCollection = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: `${contentBase}/talks` }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -63,6 +71,7 @@ const talksCollection = defineCollection({
 });
 
 const notesCollection = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: `${contentBase}/notes` }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date().optional(),

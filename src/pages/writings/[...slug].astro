@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection, render, type CollectionEntry } from "astro:content";
 import {
   calculateReadingTime,
   formatReadingTime,
@@ -12,7 +12,7 @@ export const prerender = true;
 export async function getStaticPaths() {
   const posts = await getCollection("writings");
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: post,
   }));
 }
@@ -20,8 +20,8 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"writings">;
 
 const post = Astro.props;
-const { Content } = await post.render();
-const readingTime = calculateReadingTime(post.body);
+const { Content } = await render(post);
+const readingTime = calculateReadingTime(post.body || '');
 
 // Helper function to format date
 function formatDate(date: Date): string {
@@ -30,6 +30,11 @@ function formatDate(date: Date): string {
     month: "long",
     day: "numeric",
   }).format(date);
+}
+
+function bannerUrl(postId: string, banner: string) {
+  if (banner.startsWith('http')) return banner;
+  return `https://ik.imagekit.io/aravindballa/website/${postId}-${banner}`;
 }
 ---
 
@@ -50,7 +55,7 @@ function formatDate(date: Date): string {
       post.data.banner && post.data.banner.trim() && (
         <div class="mb-8">
           <img
-            src={post.data.banner}
+            src={bannerUrl(post.id, post.data.banner)}
             alt={post.data.title}
             class="w-full h-64 md:h-96 object-cover rounded-lg"
           />

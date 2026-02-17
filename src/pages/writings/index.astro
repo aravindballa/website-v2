@@ -1,38 +1,46 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Breadcrumb from '../../components/Breadcrumb.astro';
-import { getCollection } from 'astro:content';
-import { calculateReadingTime, formatReadingTime } from '../../utils/readingTime';
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import { getCollection } from "astro:content";
+import {
+  calculateReadingTime,
+  formatReadingTime,
+} from "../../utils/readingTime";
 
-// Get all writings and memos  
-const writings = await getCollection('writings');
-const memos = await getCollection('memos');
+// Get all writings and memos
+const writings = await getCollection("writings");
+const memos = await getCollection("memos");
 
 // Filter published posts and combine
-const publishedWritings = writings.filter(({ data }) => data.published !== false);
+const publishedWritings = writings.filter(
+  ({ data }) => data.published !== false,
+);
 const publishedMemos = memos.filter(({ data }) => data.published !== false);
 
 // Combine and sort by date
 const allPosts = [...publishedWritings, ...publishedMemos].sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 
 // Helper function to format date
 function formatDate(date: Date): string {
-  return new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   }).format(date);
+}
+
+function bannerUrl(postId: string, banner: string) {
+  if (banner.startsWith("http")) return banner;
+  return `https://ik.imagekit.io/aravindballa/website/${postId}-${banner}`;
 }
 
 // State for filtering will be handled client-side
 ---
 
 <Layout title="Writings">
-  <Breadcrumb crumbs={[
-    { label: 'Aravind Balla', href: '/' },
-  ]} />
+  <Breadcrumb crumbs={[{ label: "Aravind Balla", href: "/" }]} />
   <div class="space-y-12">
     <div>
       <h1 class="text-4xl font-bold font-poppins mb-6">Writings</h1>
@@ -63,31 +71,31 @@ function formatDate(date: Date): string {
       </button>
     </div>
 
-    <!-- Posts Grid -->
-    <div class="grid gap-8 md:grid-cols-2" id="posts-grid">
+    <!-- Posts Masonry -->
+    <div class="columns-1 md:columns-2 gap-6" id="posts-grid">
       {
         allPosts.map((post) => {
-          const isMemo = post.collection === 'memos';
-          const postUrl = isMemo ? `/memos/${post.slug}` : `/writings/${post.slug}`;
+          const isMemo = post.collection === "memos";
+          const postUrl = isMemo ? `/memos/${post.id}` : `/writings/${post.id}`;
           const readingTime = calculateReadingTime(post.body);
 
           return (
             <article
-              class={`post-card group relative overflow-hidden rounded-lg border border-[var(--border)] hover:shadow-lg transition-all duration-300 ${post.data.banner && post.data.banner.trim() ? 'row-span-2' : ''}`}
-              data-type={isMemo ? 'memos' : 'writings'}
+              class="post-card group break-inside-avoid mb-6 overflow-hidden rounded-lg border border-[var(--border)] hover:shadow-lg transition-all duration-300"
+              data-type={isMemo ? "memos" : "writings"}
             >
               {post.data.banner && post.data.banner.trim() && (
-                <div class="h-48 overflow-hidden">
+                <div class="overflow-hidden">
                   <img
-                    src={post.data.banner}
+                    src={bannerUrl(post.id, post.data.banner)}
                     alt={post.data.title}
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    class="w-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
               )}
 
-              <div class="p-8">
-                <div class="flex items-start justify-between mb-3">
+              <div class="p-6">
+                <div class="flex items-start justify-between gap-2 mb-3">
                   <h3 class="text-xl font-semibold font-poppins">
                     <a
                       href={postUrl}
@@ -97,24 +105,28 @@ function formatDate(date: Date): string {
                     </a>
                   </h3>
                   {isMemo && (
-                    <span class="text-xs px-2 py-1 bg-[var(--surface)] rounded-full text-[var(--muted)]">
+                    <span class="text-xs px-2 py-1 bg-[var(--surface)] rounded-full text-[var(--muted)] shrink-0">
                       memo
                     </span>
                   )}
                 </div>
 
                 {post.data.description && post.data.description.trim() && (
-                  <p class="text-[var(--muted)] mb-3">{post.data.description}</p>
+                  <p class="text-[var(--muted)] mb-3">
+                    {post.data.description}
+                  </p>
                 )}
 
                 <div class="flex items-center text-sm text-[var(--muted)]">
-                  <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+                  <time datetime={post.data.date.toISOString()}>
+                    {formatDate(post.data.date)}
+                  </time>
                   <span class="mx-2">·</span>
                   <span>{formatReadingTime(readingTime)}</span>
                   {post.data.tags && post.data.tags.trim() && (
                     <>
                       <span class="mx-2">·</span>
-                      <span>{post.data.tags.split(',')[0].trim()}</span>
+                      <span>{post.data.tags.split(",")[0].trim()}</span>
                     </>
                   )}
                 </div>
@@ -129,50 +141,50 @@ function formatDate(date: Date): string {
 
 <script>
   // Client-side filtering
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const postCards = document.querySelectorAll('.post-card');
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const postCards = document.querySelectorAll(".post-card");
 
   // Function to apply filter
   function applyFilter(filter: string | null) {
     // Update active button
     filterButtons.forEach((btn) => {
-      if (btn.getAttribute('data-filter') === filter) {
-        btn.classList.add('active');
+      if (btn.getAttribute("data-filter") === filter) {
+        btn.classList.add("active");
       } else {
-        btn.classList.remove('active');
+        btn.classList.remove("active");
       }
     });
 
     // Filter posts
     postCards.forEach((card) => {
       const htmlCard = card as HTMLElement;
-      if (!filter || filter === 'all') {
-        htmlCard.style.display = 'block';
+      if (!filter || filter === "all") {
+        htmlCard.style.display = "block";
       } else {
-        const postType = card.getAttribute('data-type');
-        htmlCard.style.display = postType === filter ? 'block' : 'none';
+        const postType = card.getAttribute("data-type");
+        htmlCard.style.display = postType === filter ? "block" : "none";
       }
     });
 
     // Update URL
     const url = new URL(window.location.href);
-    if (!filter || filter === 'all') {
-      url.searchParams.delete('filter');
+    if (!filter || filter === "all") {
+      url.searchParams.delete("filter");
     } else {
-      url.searchParams.set('filter', filter);
+      url.searchParams.set("filter", filter);
     }
-    window.history.pushState({}, '', url.toString());
+    window.history.pushState({}, "", url.toString());
   }
 
   // Apply filter from URL on page load
   const urlParams = new URLSearchParams(window.location.search);
-  const initialFilter = urlParams.get('filter') || 'all';
+  const initialFilter = urlParams.get("filter") || "all";
   applyFilter(initialFilter);
 
   // Handle filter button clicks
   filterButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const filter = button.getAttribute('data-filter');
+    button.addEventListener("click", () => {
+      const filter = button.getAttribute("data-filter");
       applyFilter(filter);
     });
   });

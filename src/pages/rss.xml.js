@@ -20,7 +20,7 @@ export async function GET(context) {
     site: context.site,
     items: allPosts.map((post) => {
       const isMemo = post.collection === 'memos';
-      const postUrl = isMemo ? `/memos/${post.slug}` : `/writings/${post.slug}`;
+      const postUrl = isMemo ? `/memos/${post.id}` : `/writings/${post.id}`;
       
       return {
         title: post.data.title,

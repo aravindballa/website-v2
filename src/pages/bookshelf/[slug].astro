@@ -3,7 +3,7 @@ export const prerender = false; // Enable SSR for dynamic Readwise data
 
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import { getReadwiseBooks, type ReadwiseBook, type ReadwiseHighlightsResponse, slugify } from '../../utils/readwise';
 
 export async function getStaticPaths() {
@@ -56,9 +56,12 @@ if (readwiseMatch) {
 
     // Check if there's a corresponding content note
     const contentBooks = await getCollection('bookshelf');
-    bookContent = contentBooks.find((contentBook) => 
-      contentBook.slug === `bookshelf/${slugify(book?.title || '')}`
+    const matchedBook = contentBooks.find((contentBook) =>
+      contentBook.id === slugify(book?.title || '')
     );
+    if (matchedBook) {
+      bookContent = await render(matchedBook);
+    }
   } catch (error) {
     console.error('Error fetching book data:', error);
   }
@@ -66,8 +69,8 @@ if (readwiseMatch) {
   // This might be a content book - check collection
   try {
     const contentBooks = await getCollection('bookshelf');
-    const book = contentBooks.find((contentBook) => contentBook.slug === slug);
-    
+    const book = contentBooks.find((contentBook) => contentBook.id === slug);
+
     if (book) {
       bookData = {
         title: book.data.title,
@@ -76,7 +79,7 @@ if (readwiseMatch) {
         date: book.data.date,
         rating: book.data.rating,
       };
-      bookContent = await book.render();
+      bookContent = await render(book);
     }
   } catch (error) {
     console.error('Error fetching content book:', error);

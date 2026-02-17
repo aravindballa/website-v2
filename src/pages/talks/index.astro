@@ -39,7 +39,7 @@ function formatDate(date: Date): string {
         publishedTalks.map((talk) => (
           <article class="border border-[var(--border)] rounded-lg p-6 hover:shadow-lg transition-shadow">
             <h3 class="text-xl font-semibold font-poppins mb-2">
-              <a href={`/talks/${talk.slug}`} class="hover:text-[var(--accent)] transition-colors">
+              <a href={`/talks/${talk.id}`} class="hover:text-[var(--accent)] transition-colors">
                 {talk.data.title}
               </a>
             </h3>

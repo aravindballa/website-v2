@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import { calculateReadingTime, formatReadingTime } from '../../utils/readingTime';
 
 export const prerender = true;
@@ -9,7 +9,7 @@ export const prerender = true;
 export async function getStaticPaths() {
   const memos = await getCollection('memos');
   return memos.map((memo) => ({
-    params: { slug: memo.slug },
+    params: { slug: memo.id },
     props: memo,
   }));
 }
@@ -17,8 +17,8 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'memos'>;
 
 const memo = Astro.props;
-const { Content } = await memo.render();
-const readingTime = calculateReadingTime(memo.body);
+const { Content } = await render(memo);
+const readingTime = calculateReadingTime(memo.body || '');
 
 // Helper function to format date
 function formatDate(date: Date): string {
