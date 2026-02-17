@@ -2,6 +2,7 @@
 export const prerender = false; // Enable SSR for dynamic Readwise data
 
 import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { getReadwiseBooks, type ReadwiseBook, type ReadwiseHighlightsResponse, slugify } from '../../utils/readwise';
 
@@ -100,14 +101,18 @@ function formatDate(date: Date | string | undefined): string {
 ---
 
 <Layout title={bookData.title} description={bookData.description}>
-  <div class="mt-12 prose lg:prose-lg dark:prose-light max-w-4xl mx-auto">
+  <Breadcrumb crumbs={[
+    { label: 'Aravind Balla', href: '/' },
+    { label: 'Bookshelf', href: '/bookshelf' },
+  ]} />
+  <div class="prose lg:prose-lg dark:prose-invert max-w-none">
     <h1>{highlights ? `Highlights from "${bookData.title}"` : bookData.title}</h1>
     
     <div class="flex justify-between flex-col md:flex-row mb-8">
       <p class="italic text-lg">By {bookData.author}</p>
       {bookData.cover && (
         <img
-          class="rounded border-2 border-gray-500 w-[132px] h-[200px] object-cover"
+          class="rounded border-2 border-[var(--border)] w-[132px] h-[200px] object-cover"
           src={bookData.cover}
           alt={`Cover of the book ${bookData.title}`}
           loading="lazy"
@@ -128,7 +133,7 @@ function formatDate(date: Date | string | undefined): string {
           .sort((a: any, b: any) => a.location - b.location)
           .map((result: any) => (
             <p key={result.id} class="mb-4">
-              <span class="bg-yellow-500 bg-opacity-20 px-1 py-0.5 rounded">
+              <span class="bg-yellow-500/20 px-1 py-0.5 rounded">
                 {result.text}
               </span>
             </p>
@@ -137,20 +142,12 @@ function formatDate(date: Date | string | undefined): string {
     )}
     
     {highlights && (
-      <div class="text-base bg-gray-100 dark:bg-gray-800 p-4 rounded text-gray-600 dark:text-gray-300 mt-8">
+      <div class="text-base bg-[var(--surface)] p-4 rounded text-[var(--muted)] mt-8">
         These highlights are sourced from my Kindle using Readwise. Readwise automatically syncs
         all your highlights from various sources. It's cool.{' '}
         <a href="https://readwise.io/i/aravind1" class="underline">Referral link</a> if you'd like to try.
       </div>
     )}
     
-    <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
-      <a href="/bookshelf" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
-        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-        </svg>
-        Back to bookshelf
-      </a>
-    </div>
   </div>
 </Layout>

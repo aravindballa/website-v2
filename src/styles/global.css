@@ -1,39 +1,68 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+@custom-variant dark (&:where(.dark, .dark *));
 
-/* Import fonts from fontsource */
-@import '@fontsource/poppins/400.css';
-@import '@fontsource/poppins/500.css';
-@import '@fontsource/poppins/600.css';
-@import '@fontsource/poppins/700.css';
-@import '@fontsource-variable/work-sans';
+@font-face {
+  font-family: 'Rethink Sans';
+  src: url('/fonts/RethinkSans-Variable.ttf') format('truetype');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Rethink Sans';
+  src: url('/fonts/RethinkSans-Italic-Variable.ttf') format('truetype');
+  font-weight: 400 800;
+  font-style: italic;
+  font-display: swap;
+}
 
 /* CSS Variables for theming */
 :root {
-  --background: #ffffff;
-  --foreground: #000000;
-  --headings: #000000;
+  color-scheme: light dark;
+  --background: #FAFAF9;
+  --foreground: #1C1917;
+  --headings: #0C0A09;
+  --muted: #78716C;
+  --accent: #D97706;
+  --accent-hover: #B45309;
+  --border: #E7E5E4;
+  --surface: #F5F5F4;
 }
 
 .dark {
-  --background: #000000;
-  --foreground: #ffffff;
-  --headings: #ffffff;
+  --background: #1C1917;
+  --foreground: #E7E5E4;
+  --headings: #FAFAF9;
+  --muted: #A8A29E;
+  --accent: #F59E0B;
+  --accent-hover: #FBBF24;
+  --border: #292524;
+  --surface: #292524;
 }
 
 /* Apply theme colors */
 body {
-  font-family: 'Work Sans Variable', 'Work Sans', sans-serif;
+  font-family: 'Rethink Sans', sans-serif;
   background-color: var(--background);
   color: var(--foreground);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Rethink Sans', sans-serif;
   color: var(--headings);
+  text-wrap: balance;
 }
 
 .filter-btn.active {
-  @apply bg-blue-600 text-white border-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600;
+  background-color: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.filter-btn.active:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
 }
