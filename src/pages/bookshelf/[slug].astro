@@ -1,6 +1,6 @@
 ---
-export const prerender = false; // Enable SSR for dynamic Readwise data
-const { env } = Astro.locals.runtime;
+export const prerender = false;
+const { env } = (Astro.locals as any).runtime || {};
 
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
@@ -18,7 +18,7 @@ export async function getStaticPaths() {
   return [];
 }
 
-const { slug } = Astro.params;
+const { slug } = Astro.params as { slug?: string };
 
 // Check if this is a Readwise book (ends with -number)
 const readwiseMatch = slug?.match(/^(.+)-(\d+)$/);
@@ -152,7 +152,7 @@ function formatDate(date: Date | string | undefined): string {
           {highlights.results
             .sort((a: any, b: any) => a.location - b.location)
             .map((result: any) => (
-              <p key={result.id} class="mb-4">
+              <p class="mb-4">
                 <span class="bg-yellow-500/20 px-1 py-0.5 rounded">
                   {result.text}
                 </span>

@@ -46,7 +46,7 @@ export async function getReadwiseBooks(): Promise<ReadwiseBooksResponse> {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    const data = await response.json();
+    const data = await response.json() as ReadwiseBooksResponse;
     return data;
   } catch (error) {
     console.error('Error fetching Readwise books:', error);

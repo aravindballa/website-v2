@@ -1,14 +1,16 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
-import { calculateReadingTime, formatReadingTime } from '../utils/readingTime';
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { calculateReadingTime, formatReadingTime } from "../utils/readingTime";
 
 // Get all writings and memos that are published
-const writings = await getCollection('writings');
-const memos = await getCollection('memos');
+const writings = await getCollection("writings");
+const memos = await getCollection("memos");
 
 // Filter published posts
-const publishedWritings = writings.filter(({ data }) => data.published !== false);
+const publishedWritings = writings.filter(
+  ({ data }) => data.published !== false,
+);
 const publishedMemos = memos.filter(({ data }) => data.published !== false);
 
 // Combine and sort by date
@@ -19,15 +21,15 @@ const allPosts = [...publishedWritings, ...publishedMemos]
 // Helper function to truncate text
 function truncateText(text: string, maxLength: number = 150): string {
   if (text.length <= maxLength) return text;
-  return text.slice(0, maxLength).trim() + '...';
+  return text.slice(0, maxLength).trim() + "...";
 }
 
 // Helper function to format date
 function formatDate(date: Date): string {
-  return new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   }).format(date);
 }
 ---
@@ -36,48 +38,77 @@ function formatDate(date: Date): string {
   <div class="space-y-16">
     <!-- Bio Section -->
     <section class="prose prose-lg dark:prose-invert max-w-none">
-      <h1 class="text-6xl font-bold font-poppins tracking-tight mb-8">Aravind Balla</h1>
+      <h1 class="text-6xl font-bold font-poppins tracking-tight mb-8">
+        Aravind Balla
+      </h1>
       <p class="text-xl text-[var(--muted)] mb-4">
-        Hi 👋 I am Software Developer working remotely from Hyderabad, India. I love JS
-        and CSS 💛. I like to build stuff, document the process and share the knowledge I
-        gain.
+        Hi 👋 I am Software Developer working remotely from Hyderabad, India. I
+        love JS and CSS 💛. I like to build stuff, document the process and
+        share the knowledge I gain.
       </p>
       <p class="text-xl text-[var(--muted)]">
-        I currently work 👨🏻‍💻 at <a href="https://paperpile.com/?welcome" class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline">Paperpile</a> where we are building tools – Paperpile and
-        <a href="https://bibguru.com/" class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline">BibGuru</a>, which are used by thousands of scientists and students for research from all
-        over the world.
+        I currently work 👨🏻‍💻 at <a
+          href="https://paperpile.com/?welcome"
+          class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline"
+          >Paperpile</a
+        > where we are building tools – Paperpile and
+        <a
+          href="https://bibguru.com/"
+          class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline"
+          >BibGuru</a
+        >, which are used by thousands of scientists and students for research
+        from all over the world.
       </p>
     </section>
 
     <!-- Recent Posts Section -->
     <section>
       <div class="flex items-center justify-between mb-8">
-        <h2 class="text-2xl font-bold font-poppins">Few things I've wrote recently</h2>
-        <a href="/writings" class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline">See all</a>
+        <h2 class="text-2xl font-bold font-poppins">
+          Few things I've wrote recently
+        </h2>
+        <a
+          href="/writings"
+          class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline"
+          >See all</a
+        >
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-        {allPosts.length > 0 ? (
-          allPosts.map((post) => {
-            const isMemo = post.collection === 'memos';
-            const postUrl = isMemo ? `/memos/${post.id}` : `/writings/${post.id}`;
+        {
+          allPosts.length > 0 ? (
+            allPosts.map((post) => {
+              const isMemo = post.collection === "memos";
+              const postUrl = isMemo
+                ? `/memos/${post.id}`
+                : `/writings/${post.id}`;
 
-            return (
-              <article class="space-y-3">
-                <h3 class="text-lg font-semibold font-poppins">
-                  <a href={postUrl} class="hover:text-[var(--accent)] transition-colors">
-                    {post.data.title}
-                  </a>
-                </h3>
+              return (
+                <article class="space-y-3">
+                  <h3 class="text-lg font-semibold font-poppins">
+                    <a
+                      href={postUrl}
+                      class="hover:text-[var(--accent)] transition-colors"
+                    >
+                      {post.data.title}
+                    </a>
+                  </h3>
 
-                <p class="text-[var(--muted)] text-sm leading-relaxed">
-                  {truncateText((post.data.description && post.data.description.trim()) || post.body)}
-                </p>
-              </article>
-            );
-          })
-        ) : (
-          <p class="text-[var(--muted)]">No posts yet. Content coming soon!</p>
-        )}
+                  <p class="text-[var(--muted)] text-sm leading-relaxed">
+                    {truncateText(
+                      (post.data.description && post.data.description.trim()) ||
+                        post.body ||
+                        "",
+                    )}
+                  </p>
+                </article>
+              );
+            })
+          ) : (
+            <p class="text-[var(--muted)]">
+              No posts yet. Content coming soon!
+            </p>
+          )
+        }
       </div>
     </section>
 
@@ -89,27 +120,42 @@ function formatDate(date: Date): string {
       </p>
       <ul class="space-y-2 text-[var(--muted)]">
         <li>
-          <a href="https://www.youtube.com/watch?v=8XP0pxofYbQ" class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline">
+          <a
+            href="https://www.youtube.com/watch?v=8XP0pxofYbQ"
+            class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline"
+          >
             Jun 2020: Building a Second brain (Remote)
           </a>
         </li>
         <li>
-          <a href="https://www.meetup.com/vue-hyderabad/events/268288016/" class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline">
+          <a
+            href="https://www.meetup.com/vue-hyderabad/events/268288016/"
+            class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline"
+          >
             Feb 2020: Taking power back to CSS
           </a>
         </li>
         <li>
-          <a href="/talks/devfest-19/" class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline">
+          <a
+            href="/talks/devfest-19/"
+            class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline"
+          >
             Oct 2019: Build Blazing Fast Portfolios
           </a>
         </li>
         <li>
-          <a href="https://www.meetup.com/coderplex/events/263195332/" class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline">
+          <a
+            href="https://www.meetup.com/coderplex/events/263195332/"
+            class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline"
+          >
             Jul 2019: Build Websites with Gatsby JS
           </a>
         </li>
         <li>
-          <a href="https://www.meetup.com/vue-hyderabad/events/268288016/" class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline">
+          <a
+            href="https://www.meetup.com/vue-hyderabad/events/268288016/"
+            class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline"
+          >
             Apr 2018: React vs Vue
           </a>
         </li>
