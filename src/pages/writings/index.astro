@@ -22,6 +22,16 @@ const allPosts = [...publishedWritings, ...publishedMemos].sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 
+// Group posts by year
+const postsByYear = new Map<number, typeof allPosts>();
+for (const post of allPosts) {
+  const year = post.data.date.getFullYear();
+  if (!postsByYear.has(year)) {
+    postsByYear.set(year, []);
+  }
+  postsByYear.get(year)!.push(post);
+}
+
 // Helper function to format date
 function formatDate(date: Date): string {
   return new Intl.DateTimeFormat("en-US", {
@@ -71,69 +81,76 @@ function bannerUrl(postId: string, banner: string) {
       </button>
     </div>
 
-    <!-- Posts Masonry -->
-    <div class="columns-1 md:columns-2 gap-6" id="posts-grid">
+    <!-- Posts grouped by year -->
+    <div id="posts-grid">
       {
-        allPosts.map((post) => {
-          const isMemo = post.collection === "memos";
-          const postUrl = isMemo ? `/memos/${post.id}` : `/writings/${post.id}`;
-          const readingTime = calculateReadingTime(post.body);
+        [...postsByYear.entries()].map(([year, posts]) => (
+          <section class="year-section mb-12" data-year={year}>
+            <h2 class="text-2xl font-bold font-poppins mb-6 text-[var(--headings)]">{year}</h2>
+            <div class="columns-1 md:columns-2 gap-6">
+              {posts.map((post) => {
+                const isMemo = post.collection === "memos";
+                const postUrl = isMemo ? `/memos/${post.id}` : `/writings/${post.id}`;
+                const readingTime = calculateReadingTime(post.body);
 
-          return (
-            <article
-              class="post-card group break-inside-avoid mb-6 overflow-hidden rounded-lg border border-[var(--border)] hover:shadow-lg transition-all duration-300"
-              data-type={isMemo ? "memos" : "writings"}
-            >
-              {post.data.banner && post.data.banner.trim() && (
-                <div class="overflow-hidden">
-                  <img
-                    src={bannerUrl(post.id, post.data.banner)}
-                    alt={post.data.title}
-                    class="w-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-              )}
+                return (
+                  <article
+                    class="post-card group break-inside-avoid mb-6 overflow-hidden rounded-lg border border-[var(--border)] hover:shadow-lg transition-all duration-300"
+                    data-type={isMemo ? "memos" : "writings"}
+                  >
+                    {post.data.banner && post.data.banner.trim() && (
+                      <div class="overflow-hidden">
+                        <img
+                          src={bannerUrl(post.id, post.data.banner)}
+                          alt={post.data.title}
+                          class="w-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                    )}
 
-              <div class="p-6">
-                <div class="flex items-start justify-between gap-2 mb-3">
-                  <h3 class="text-xl font-semibold font-poppins">
-                    <a
-                      href={postUrl}
-                      class="hover:text-[var(--accent)] transition-colors"
-                    >
-                      {post.data.title}
-                    </a>
-                  </h3>
-                  {isMemo && (
-                    <span class="text-xs px-2 py-1 bg-[var(--surface)] rounded-full text-[var(--muted)] shrink-0">
-                      memo
-                    </span>
-                  )}
-                </div>
+                    <div class="p-6">
+                      <div class="flex items-start justify-between gap-2 mb-3">
+                        <h3 class="text-xl font-semibold font-poppins">
+                          <a
+                            href={postUrl}
+                            class="hover:text-[var(--accent)] transition-colors"
+                          >
+                            {post.data.title}
+                          </a>
+                        </h3>
+                        {isMemo && (
+                          <span class="text-xs px-2 py-1 bg-[var(--surface)] rounded-full text-[var(--muted)] shrink-0">
+                            memo
+                          </span>
+                        )}
+                      </div>
 
-                {post.data.description && post.data.description.trim() && (
-                  <p class="text-[var(--muted)] mb-3">
-                    {post.data.description}
-                  </p>
-                )}
+                      {post.data.description && post.data.description.trim() && (
+                        <p class="text-[var(--muted)] mb-3">
+                          {post.data.description}
+                        </p>
+                      )}
 
-                <div class="flex items-center text-sm text-[var(--muted)]">
-                  <time datetime={post.data.date.toISOString()}>
-                    {formatDate(post.data.date)}
-                  </time>
-                  <span class="mx-2">·</span>
-                  <span>{formatReadingTime(readingTime)}</span>
-                  {post.data.tags && post.data.tags.trim() && (
-                    <>
-                      <span class="mx-2">·</span>
-                      <span>{post.data.tags.split(",")[0].trim()}</span>
-                    </>
-                  )}
-                </div>
-              </div>
-            </article>
-          );
-        })
+                      <div class="flex items-center text-sm text-[var(--muted)]">
+                        <time datetime={post.data.date.toISOString()}>
+                          {formatDate(post.data.date)}
+                        </time>
+                        <span class="mx-2">·</span>
+                        <span>{formatReadingTime(readingTime)}</span>
+                        {post.data.tags && post.data.tags.trim() && (
+                          <>
+                            <span class="mx-2">·</span>
+                            <span>{post.data.tags.split(",")[0].trim()}</span>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+        ))
       }
     </div>
   </div>
@@ -164,6 +181,13 @@ function bannerUrl(postId: string, banner: string) {
         const postType = card.getAttribute("data-type");
         htmlCard.style.display = postType === filter ? "block" : "none";
       }
+    });
+
+    // Hide year sections where all posts are filtered out
+    const yearSections = document.querySelectorAll(".year-section");
+    yearSections.forEach((section) => {
+      const visiblePosts = section.querySelectorAll('.post-card:not([style*="display: none"])');
+      (section as HTMLElement).style.display = visiblePosts.length > 0 ? "block" : "none";
     });
 
     // Update URL
