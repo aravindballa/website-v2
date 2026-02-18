@@ -86,9 +86,9 @@ function bannerUrl(postId: string, banner: string) {
       {
         [...postsByYear.entries()].map(([year, posts]) => (
           <section class="year-section mb-12" data-year={year}>
-            <h2 class="text-2xl font-bold font-poppins mb-6 text-[var(--headings)]">
+            <div class="text-base font-bold font-poppins mb-6 text-[var(--muted)]">
               {year}
-            </h2>
+            </div>
             <div class="columns-1 md:columns-2 gap-6">
               {posts.map((post) => {
                 const isMemo = post.collection === "memos";
