@@ -1,10 +1,16 @@
 ---
 export const prerender = false; // Enable SSR for dynamic Readwise data
+const { env } = Astro.locals.runtime;
 
-import Layout from '../../layouts/Layout.astro';
-import Breadcrumb from '../../components/Breadcrumb.astro';
-import { getCollection, render, type CollectionEntry } from 'astro:content';
-import { getReadwiseBooks, type ReadwiseBook, type ReadwiseHighlightsResponse, slugify } from '../../utils/readwise';
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import {
+  getReadwiseBooks,
+  type ReadwiseBook,
+  type ReadwiseHighlightsResponse,
+  slugify,
+} from "../../utils/readwise";
 
 export async function getStaticPaths() {
   // Return empty paths to enable on-demand generation like Next.js fallback: 'blocking'
@@ -23,19 +29,19 @@ let bookContent: any = null;
 if (readwiseMatch) {
   // This is a Readwise book
   const [, titleSlug, bookId] = readwiseMatch;
-  
+
   try {
     // Only fetch highlights if we have a token
-    if (import.meta.env.READWISE_TOKEN) {
+    if (env.READWISE_TOKEN) {
       const highlightsResponse = await fetch(
         `https://readwise.io/api/v2/highlights/?book_id=${bookId}`,
         {
           headers: {
-            Authorization: `TOKEN ${import.meta.env.READWISE_TOKEN}`,
+            Authorization: `TOKEN ${env.READWISE_TOKEN}`,
           },
-        }
+        },
       );
-      
+
       if (highlightsResponse.ok) {
         highlights = await highlightsResponse.json();
       }
@@ -43,8 +49,10 @@ if (readwiseMatch) {
 
     // Get book details from our cached data
     const booksData = await getReadwiseBooks();
-    const book = booksData.results.find((book: ReadwiseBook) => book.id.toString() === bookId);
-    
+    const book = booksData.results.find(
+      (book: ReadwiseBook) => book.id.toString() === bookId,
+    );
+
     if (book) {
       bookData = {
         title: book.title,
@@ -55,20 +63,20 @@ if (readwiseMatch) {
     }
 
     // Check if there's a corresponding content note
-    const contentBooks = await getCollection('bookshelf');
-    const matchedBook = contentBooks.find((contentBook) =>
-      contentBook.id === slugify(book?.title || '')
+    const contentBooks = await getCollection("bookshelf");
+    const matchedBook = contentBooks.find(
+      (contentBook) => contentBook.id === slugify(book?.title || ""),
     );
     if (matchedBook) {
       bookContent = await render(matchedBook);
     }
   } catch (error) {
-    console.error('Error fetching book data:', error);
+    console.error("Error fetching book data:", error);
   }
 } else {
   // This might be a content book - check collection
   try {
-    const contentBooks = await getCollection('bookshelf');
+    const contentBooks = await getCollection("bookshelf");
     const book = contentBooks.find((contentBook) => contentBook.id === slug);
 
     if (book) {
@@ -82,7 +90,7 @@ if (readwiseMatch) {
       bookContent = await render(book);
     }
   } catch (error) {
-    console.error('Error fetching content book:', error);
+    console.error("Error fetching content book:", error);
   }
 }
 
@@ -93,64 +101,79 @@ if (!bookData) {
 
 // Helper function to format date
 function formatDate(date: Date | string | undefined): string {
-  if (!date) return '';
-  const dateObj = typeof date === 'string' ? new Date(date) : date;
-  return new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
+  if (!date) return "";
+  const dateObj = typeof date === "string" ? new Date(date) : date;
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   }).format(dateObj);
 }
 ---
 
 <Layout title={bookData.title} description={bookData.description}>
-  <Breadcrumb crumbs={[
-    { label: 'Aravind Balla', href: '/' },
-    { label: 'Bookshelf', href: '/bookshelf' },
-  ]} />
+  <Breadcrumb
+    crumbs={[
+      { label: "Aravind Balla", href: "/" },
+      { label: "Bookshelf", href: "/bookshelf" },
+    ]}
+  />
   <div class="prose lg:prose-lg dark:prose-invert max-w-none">
-    <h1>{highlights ? `Highlights from "${bookData.title}"` : bookData.title}</h1>
-    
+    <h1>
+      {highlights ? `Highlights from "${bookData.title}"` : bookData.title}
+    </h1>
+
     <div class="flex justify-between flex-col md:flex-row mb-8">
       <p class="italic text-lg">By {bookData.author}</p>
-      {bookData.cover && (
-        <img
-          class="rounded border-2 border-[var(--border)] w-[132px] h-[200px] object-cover"
-          src={bookData.cover}
-          alt={`Cover of the book ${bookData.title}`}
-          loading="lazy"
-        />
-      )}
+      {
+        bookData.cover && (
+          <img
+            class="rounded border-2 border-[var(--border)] w-[132px] h-[200px] object-cover"
+            src={bookData.cover}
+            alt={`Cover of the book ${bookData.title}`}
+            loading="lazy"
+          />
+        )
+      }
     </div>
 
-    {bookContent && (
-      <div class="mt-12">
-        <bookContent.Content />
-      </div>
-    )}
+    {
+      bookContent && (
+        <div class="mt-12">
+          <bookContent.Content />
+        </div>
+      )
+    }
 
-    {highlights && highlights.results && highlights.results.length > 0 && (
-      <div class="my-12">
-        <h2>Highlights</h2>
-        {highlights.results
-          .sort((a: any, b: any) => a.location - b.location)
-          .map((result: any) => (
-            <p key={result.id} class="mb-4">
-              <span class="bg-yellow-500/20 px-1 py-0.5 rounded">
-                {result.text}
-              </span>
-            </p>
-          ))}
-      </div>
-    )}
-    
-    {highlights && (
-      <div class="text-base bg-[var(--surface)] p-4 rounded text-[var(--muted)] mt-8">
-        These highlights are sourced from my Kindle using Readwise. Readwise automatically syncs
-        all your highlights from various sources. It's cool.{' '}
-        <a href="https://readwise.io/i/aravind1" class="underline">Referral link</a> if you'd like to try.
-      </div>
-    )}
-    
+    {
+      highlights && highlights.results && highlights.results.length > 0 && (
+        <div class="my-12">
+          <h2>Highlights</h2>
+          {highlights.results
+            .sort((a: any, b: any) => a.location - b.location)
+            .map((result: any) => (
+              <p key={result.id} class="mb-4">
+                <span class="bg-yellow-500/20 px-1 py-0.5 rounded">
+                  {result.text}
+                </span>
+              </p>
+            ))}
+        </div>
+      )
+    }
+
+    {
+      highlights && (
+        <div class="text-base bg-[var(--surface)] p-4 rounded text-[var(--muted)] mt-8">
+          These highlights are sourced from my Kindle using Readwise. Readwise
+          automatically syncs all your highlights from various sources. It's
+          cool.{" "}
+          <a href="https://readwise.io/i/aravind1" class="underline">
+            Referral link
+          </a>{" "}
+          if you'd like to try.
+        </div>
+      )
+    }
   </div>
 </Layout>
