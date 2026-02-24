@@ -53,7 +53,7 @@ function bannerUrl(postId: string, banner: string) {
   <article>
     {
       post.data.banner && post.data.banner.trim() && (
-        <div class="mb-8">
+        <div class="mb-8 -mx-8">
           <img
             src={bannerUrl(post.id, post.data.banner)}
             alt={post.data.title}
