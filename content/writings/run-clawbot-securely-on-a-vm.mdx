@@ -1,0 +1,47 @@
+---
+title: "Run OpenClaw securely on a VM"
+date: "2026-01-29"
+type: "Post"
+description: "Running your clawdbot in an Ubuntu VM using OrbStack for isolation and peace of mind."
+banner: "cover.jpg"
+---
+
+Yes, people are buying Mac Minis for their clawdbots ([@openclaw](https://x.com/openclaw)) to operate in.
+
+Which is understandable, actually.
+
+It gets its own environment to act in. Any fuckups wont hamper your personal data. This is also the reason to give it its own email, a phone number and things like a github account etc.
+
+This kind of isolation is not possible when you want to not buy a machine for it but run it directly on your own computer. There are a lot of risks of letting AI wild on your data, especially when it is also your work computer.
+
+So, I tried running it in a Ubuntu VM, using [@OrbStack](https://x.com/OrbStack), and it worked wonderfully.
+
+![Create new Machine dialog in Orbstack](https://ik.imagekit.io/aravindballa/website/orb-new-machine.png)
+
+Because it's Ubuntu, we have a good development environment for claude code to run in.
+
+I first installed claude code and authenticated. Then started the setup for clawdbot using the install script.
+
+```bash
+curl -fsSL https://molt.bot/install.sh | bash
+```
+
+Setting it up was straightforward for the most part. It was missing cli tools like homebrew (obv as it is not macos) but they aren't really necessary.
+
+![Orbstack menu for Machines](https://ik.imagekit.io/aravindballa/website/orb-log.png)
+
+Orbstack has a really nice UX for opening up the terminal of the VM and running commands. So the setup, pairing for channels, and the later config was all smooth.
+
+![VM's Terminal](https://ik.imagekit.io/aravindballa/website/orb-terminal.png)
+
+## Limitations
+
+A main drawback with is approach is that it is not macos. So you wouldn't have things like iMessages, Apple Notes, Things (macos only note taking app), etc.
+
+And keeping it always on is also not possible, at least for me. As it's my work laptop, I shut it down once a week. But then, I can easily move this to a linux machine which is always powered.
+
+---
+
+Installing Tailscale is easy on this and the clawdbot can then talk to your other devices.
+
+Main thing that gives me peace of mind is that the agent doesn't have all my sensitive data and it can manage it's own computer, be it virtual.
