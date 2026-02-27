@@ -18,6 +18,11 @@ const allPosts = [...publishedWritings, ...publishedMemos]
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3); // Get only the 3 most recent posts
 
+function bannerUrl(postId: string, banner: string) {
+  if (banner.startsWith("http")) return banner;
+  return `https://ik.imagekit.io/aravindballa/website/${postId}-${banner}`;
+}
+
 // Helper function to truncate text
 function truncateText(text: string, maxLength: number = 150): string {
   if (text.length <= maxLength) return text;
@@ -38,16 +43,26 @@ function formatDate(date: Date): string {
   <div class="space-y-16">
     <!-- Bio Section -->
     <section class="prose prose-lg dark:prose-invert max-w-none">
+      <div class="relative w-[150px] h-[150px] not-prose group mb-8" tabindex="0">
+        <img
+          src="/avatar-ascii.png"
+          alt="Aravind Balla"
+          class="w-full h-full rounded-full object-cover absolute inset-0 transition-opacity duration-500 group-hover:opacity-0 group-focus:opacity-0"
+        />
+        <img
+          src="/avatar.jpg"
+          alt="Aravind Balla"
+          class="w-full h-full rounded-full object-cover absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus:opacity-100"
+        />
+      </div>
       <h1 class="text-6xl font-bold font-poppins tracking-tight mb-8">
         Aravind Balla
       </h1>
       <p class="text-xl text-[var(--muted)] mb-4">
-        Hi 👋 I am Software Developer working remotely from Hyderabad, India. I
-        love JS and CSS 💛. I like to build stuff, document the process and
-        share the knowledge I gain.
+        I'm a <span class="builder-tooltip-trigger inline-block relative cursor-default border-b-2 border-dotted border-[var(--muted)]">Builder<span class="builder-tooltip absolute bottom-full left-0 mb-2 px-3 py-1.5 text-sm rounded-lg bg-[var(--foreground)] text-[var(--background)] whitespace-nowrap opacity-0 pointer-events-none transition-all duration-200 translate-y-1">Full Stack Dev</span></span> from Hyderabad, India.
       </p>
       <p class="text-xl text-[var(--muted)]">
-        I currently work 👨🏻‍💻 at <a
+        I currently work at <a
           href="https://paperpile.com/?welcome"
           class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline"
           >Paperpile</a
@@ -65,7 +80,7 @@ function formatDate(date: Date): string {
     <section>
       <div class="flex items-center justify-between mb-8">
         <h2 class="text-2xl font-bold font-poppins">
-          Few things I've wrote recently
+          Writings
         </h2>
         <a
           href="/writings"
@@ -84,6 +99,15 @@ function formatDate(date: Date): string {
 
               return (
                 <article class="space-y-3">
+                  {post.data.banner && post.data.banner.trim() && (
+                    <a href={postUrl} class="block overflow-hidden rounded-lg">
+                      <img
+                        src={bannerUrl(post.id, post.data.banner)}
+                        alt={post.data.title}
+                        class="w-full aspect-video object-cover"
+                      />
+                    </a>
+                  )}
                   <h3 class="text-lg font-semibold font-poppins">
                     <a
                       href={postUrl}
@@ -112,5 +136,104 @@ function formatDate(date: Date): string {
       </div>
     </section>
 
+    <!-- Projects Section -->
+    <section>
+      <h2 class="text-2xl font-bold font-poppins mb-8">Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        <a
+          href="https://stackblocks.app/?utm_source=aravindballa.com"
+          class="block rounded-lg border border-[var(--border)] overflow-hidden hover:shadow-lg transition-all duration-300"
+        >
+          <img
+            src="https://stackblocks.app/stackblocks-opengraph.png"
+            alt="Stackblocks"
+            class="w-full aspect-video object-cover"
+          />
+          <div class="p-6">
+            <h3 class="text-lg font-semibold font-poppins mb-2">Stackblocks <span class="text-sm">↗</span></h3>
+            <p class="text-[var(--muted)] text-sm">
+              No-code embeddable widgets for your website. Convert sources like newsletters into customizable embeds.
+            </p>
+          </div>
+        </a>
+        <a
+          href="https://caffeineletter.com/?utm_source=aravindballa.com"
+          class="block rounded-lg border border-[var(--border)] overflow-hidden hover:shadow-lg transition-all duration-300"
+        >
+          <img
+            src="https://ik.imagekit.io/aravindballa/caffeineletter/open-graph.png?updatedAt=1731936031072"
+            alt="Caffeineletter"
+            class="w-full aspect-video object-cover"
+          />
+          <div class="p-6">
+            <h3 class="text-lg font-semibold font-poppins mb-2">caffeineletter <span class="text-sm">↗</span></h3>
+            <p class="text-[var(--muted)] text-sm">
+              A weekly newsletter teaching you how to brew cafe-quality coffee at home, every Saturday.
+            </p>
+          </div>
+        </a>
+        <div class="rounded-lg border-2 border-dashed border-[var(--border)] overflow-hidden flex flex-col">
+          <div class="aspect-video bg-[var(--surface)] flex items-center justify-center">
+            <svg class="w-12 h-12 text-[var(--muted)] opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
+            </svg>
+          </div>
+          <div class="p-6">
+            <div class="text-lg font-semibold font-poppins mb-2 text-[var(--muted)]">Next big thing</div>
+            <p class="text-[var(--muted)] text-sm opacity-70">
+              Brewing ideas, shipping soon.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </div>
 </Layout>
+
+<script>
+  const trigger = document.querySelector(".builder-tooltip-trigger");
+  const tooltip = document.querySelector(".builder-tooltip");
+  if (trigger && tooltip) {
+    const labels = ["Full Stack Dev", "Prompter", "Newsletter Author", "Indie Dev"];
+    let index = 0;
+    let interval: ReturnType<typeof setInterval> | null = null;
+
+    const el = tooltip as HTMLElement;
+
+    function animateIn() {
+      el.style.opacity = "1";
+      el.style.transform = "translateY(0)";
+    }
+
+    function animateOut() {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(4px)";
+    }
+
+    function cycleLabel() {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(4px)";
+      setTimeout(() => {
+        index = (index + 1) % labels.length;
+        el.textContent = labels[index];
+        animateIn();
+      }, 200);
+    }
+
+    // init hidden state
+    animateOut();
+
+    trigger.addEventListener("mouseenter", () => {
+      index = 0;
+      el.textContent = labels[index];
+      animateIn();
+      interval = setInterval(cycleLabel, 1000);
+    });
+
+    trigger.addEventListener("mouseleave", () => {
+      animateOut();
+      if (interval) clearInterval(interval);
+    });
+  }
+</script>
