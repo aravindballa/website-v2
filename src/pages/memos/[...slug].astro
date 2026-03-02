@@ -51,6 +51,21 @@ function formatDate(date: Date): string {
         </time>
         <span class="text-sm text-[var(--muted)]">·</span>
         <span class="text-sm text-[var(--muted)]">{formatReadingTime(readingTime)}</span>
+        {memo.data.tags && memo.data.tags.trim() && (
+          <>
+            <span class="text-sm text-[var(--muted)]">·</span>
+            <div class="flex gap-2">
+              {memo.data.tags.split(",").map((tag) => (
+                <a
+                  href={`/writings/?tag=${tag.trim()}`}
+                  class="px-2 py-1 bg-[var(--surface)] rounded text-xs text-[var(--muted)] hover:bg-[var(--accent)] hover:text-white transition-colors"
+                >
+                  {tag.trim()}
+                </a>
+              ))}
+            </div>
+          </>
+        )}
       </div>
       <h1 class="text-4xl font-bold font-poppins mb-4">{memo.data.title}</h1>
       {memo.data.description && (

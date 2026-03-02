@@ -189,7 +189,13 @@ function bannerUrl(postId: string, banner: string) {
                         {post.data.tags && post.data.tags.trim() && (
                           <>
                             <span class="mx-2">·</span>
-                            <span>{post.data.tags.split(",")[0].trim()}</span>
+                            <div class="flex flex-wrap gap-1">
+                              {post.data.tags.split(",").map((tag) => (
+                                <span class="px-1.5 py-0.5 bg-[var(--surface)] rounded text-xs">
+                                  {tag.trim()}
+                                </span>
+                              ))}
+                            </div>
                           </>
                         )}
                       </div>

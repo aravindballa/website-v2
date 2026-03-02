@@ -84,9 +84,12 @@ function bannerUrl(postId: string, banner: string) {
               <span>·</span>
               <div class="flex gap-2">
                 {post.data.tags.split(",").map((tag) => (
-                  <span class="px-2 py-1 bg-[var(--surface)] rounded text-xs">
+                  <a
+                    href={`/writings/?tag=${tag.trim()}`}
+                    class="px-2 py-1 bg-[var(--surface)] rounded text-xs hover:bg-[var(--accent)] hover:text-white transition-colors"
+                  >
                     {tag.trim()}
-                  </span>
+                  </a>
                 ))}
               </div>
             </>
