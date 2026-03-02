@@ -32,6 +32,14 @@ for (const post of allPosts) {
   postsByYear.get(year)!.push(post);
 }
 
+const allTags = [
+  ...new Set(
+    allPosts
+      .flatMap((p) => (p.data.tags ? p.data.tags.split(",").map((t) => t.trim()) : []))
+      .filter(Boolean)
+  ),
+].sort();
+
 // Helper function to format date
 function formatDate(date: Date): string {
   return new Intl.DateTimeFormat("en-US", {
@@ -90,6 +98,19 @@ function bannerUrl(postId: string, banner: string) {
       </button>
     </div>
 
+    {allTags.length > 0 && (
+      <div class="flex flex-wrap gap-2" id="tag-buttons">
+        {allTags.map((tag) => (
+          <button
+            data-tag={tag}
+            class="tag-btn px-3 py-1 rounded-full text-sm border border-[var(--border)] hover:bg-[var(--surface)] transition-colors"
+          >
+            {tag}
+          </button>
+        ))}
+      </div>
+    )}
+
     <!-- Search Dialog -->
     <dialog id="search-dialog" class="search-dialog">
       <div class="search-dialog-content">
@@ -123,6 +144,7 @@ function bannerUrl(postId: string, banner: string) {
                   <article
                     class="post-card group break-inside-avoid mb-6 overflow-hidden rounded-lg border border-[var(--border)] hover:shadow-lg transition-all duration-300"
                     data-type={isMemo ? "memos" : "writings"}
+                    data-tags={post.data.tags ? post.data.tags.split(",").map((t) => t.trim()).join(",") : ""}
                   >
                     {post.data.banner && post.data.banner.trim() && (
                       <div class="overflow-hidden">
@@ -229,62 +251,60 @@ function bannerUrl(postId: string, banner: string) {
     }
   });
 
-  // Client-side filtering
+  // Tag + type filtering
   const filterButtons = document.querySelectorAll(".filter-btn");
+  const tagButtons = document.querySelectorAll(".tag-btn");
   const postCards = document.querySelectorAll(".post-card");
 
-  // Function to apply filter
-  function applyFilter(filter: string | null) {
-    // Update active button
+  let activeType = "all";
+  let activeTag: string | null = null;
+
+  function applyFilters() {
     filterButtons.forEach((btn) => {
-      if (btn.getAttribute("data-filter") === filter) {
-        btn.classList.add("active");
-      } else {
-        btn.classList.remove("active");
-      }
+      btn.classList.toggle("active", btn.getAttribute("data-filter") === activeType);
+    });
+    tagButtons.forEach((btn) => {
+      btn.classList.toggle("active", btn.getAttribute("data-tag") === activeTag);
     });
 
-    // Filter posts
     postCards.forEach((card) => {
-      const htmlCard = card as HTMLElement;
-      if (!filter || filter === "all") {
-        htmlCard.style.display = "block";
-      } else {
-        const postType = card.getAttribute("data-type");
-        htmlCard.style.display = postType === filter ? "block" : "none";
-      }
+      const el = card as HTMLElement;
+      const typeMatch = activeType === "all" || card.getAttribute("data-type") === activeType;
+      const cardTags = (card.getAttribute("data-tags") || "").split(",").map((t) => t.trim());
+      const tagMatch = !activeTag || cardTags.includes(activeTag);
+      el.style.display = typeMatch && tagMatch ? "block" : "none";
     });
 
-    // Hide year sections where all posts are filtered out
-    const yearSections = document.querySelectorAll(".year-section");
-    yearSections.forEach((section) => {
-      const visiblePosts = section.querySelectorAll(
-        '.post-card:not([style*="display: none"])',
-      );
-      (section as HTMLElement).style.display =
-        visiblePosts.length > 0 ? "block" : "none";
+    document.querySelectorAll(".year-section").forEach((section) => {
+      const visible = section.querySelectorAll('.post-card:not([style*="display: none"])');
+      (section as HTMLElement).style.display = visible.length > 0 ? "block" : "none";
     });
 
-    // Update URL
     const url = new URL(window.location.href);
-    if (!filter || filter === "all") {
-      url.searchParams.delete("filter");
-    } else {
-      url.searchParams.set("filter", filter);
-    }
+    if (activeType === "all") url.searchParams.delete("filter");
+    else url.searchParams.set("filter", activeType);
+    if (!activeTag) url.searchParams.delete("tag");
+    else url.searchParams.set("tag", activeTag);
     window.history.pushState({}, "", url.toString());
   }
 
-  // Apply filter from URL on page load
-  const urlParams = new URLSearchParams(window.location.search);
-  const initialFilter = urlParams.get("filter") || "all";
-  applyFilter(initialFilter);
+  const params = new URLSearchParams(window.location.search);
+  activeType = params.get("filter") || "all";
+  activeTag = params.get("tag");
+  applyFilters();
 
-  // Handle filter button clicks
-  filterButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const filter = button.getAttribute("data-filter");
-      applyFilter(filter);
+  filterButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      activeType = btn.getAttribute("data-filter") || "all";
+      applyFilters();
+    });
+  });
+
+  tagButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const tag = btn.getAttribute("data-tag");
+      activeTag = activeTag === tag ? null : tag;
+      applyFilters();
     });
   });
 </script>

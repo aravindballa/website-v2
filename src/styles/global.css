@@ -72,6 +72,17 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--accent-hover);
 }
 
+.tag-btn.active {
+  background-color: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.tag-btn.active:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
 /* Search dialog */
 .search-dialog {
   border: none;
