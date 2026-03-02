@@ -3,7 +3,7 @@ title: 'Siri Shortcuts I use'
 date: '2021-03-19'
 type: 'Post'
 description: 'Siri shortcuts are a game changers.'
-tags: 'apple, iOS, iOS shortcuts, Siri shortcuts, iPhone, iPad, productivity'
+tags: 'productivity'
 banner: 'banner.jpg'
 ---
 
