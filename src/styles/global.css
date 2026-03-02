@@ -71,3 +71,62 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--accent-hover);
   border-color: var(--accent-hover);
 }
+
+/* Search dialog */
+.search-dialog {
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0;
+  max-width: 640px;
+  width: calc(100% - 2rem);
+  background: var(--background);
+  color: var(--foreground);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  margin: 15vh auto 0;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.search-dialog::backdrop {
+  background: rgb(0 0 0 / 0.5);
+}
+
+.search-dialog-content {
+  padding: 1.5rem;
+}
+
+/* Pagefind UI theme overrides */
+.search-dialog {
+  --pagefind-ui-scale: 0.9;
+  --pagefind-ui-primary: var(--accent);
+  --pagefind-ui-text: var(--foreground);
+  --pagefind-ui-background: var(--background);
+  --pagefind-ui-border: var(--border);
+  --pagefind-ui-tag: var(--surface);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 0.5rem;
+  --pagefind-ui-font: 'Rethink Sans', sans-serif;
+}
+
+.pagefind-ui__search-input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.pagefind-ui__result-link {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.pagefind-ui__result-link:hover {
+  text-decoration-color: var(--accent);
+}
+
+.pagefind-ui__results-area > *:last-child {
+  border-top: none;
+  border-bottom: none;
+}
+
+.pagefind-ui__result:last-child {
+  border-bottom: none;
+}

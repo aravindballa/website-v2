@@ -60,26 +60,48 @@ function bannerUrl(postId: string, banner: string) {
     </div>
 
     <!-- Filter Buttons -->
-    <div class="flex gap-2" id="filter-buttons">
+    <div class="flex justify-between items-center">
+      <div class="flex gap-2" id="filter-buttons">
+        <button
+          data-filter="all"
+          class="filter-btn px-4 py-2 rounded-lg border border-[var(--border)] hover:bg-[var(--surface)] transition-colors active"
+        >
+          All
+        </button>
+        <button
+          data-filter="writings"
+          class="filter-btn px-4 py-2 rounded-lg border border-[var(--border)] hover:bg-[var(--surface)] transition-colors"
+        >
+          Blog posts
+        </button>
+        <button
+          data-filter="memos"
+          class="filter-btn px-4 py-2 rounded-lg border border-[var(--border)] hover:bg-[var(--surface)] transition-colors"
+        >
+          Memos
+        </button>
+      </div>
       <button
-        data-filter="all"
-        class="filter-btn px-4 py-2 rounded-lg border border-[var(--border)] hover:bg-[var(--surface)] transition-colors active"
+        id="search-btn"
+        class="px-4 py-2 rounded-lg border border-[var(--border)] hover:bg-[var(--surface)] transition-colors flex items-center gap-2"
       >
-        All
-      </button>
-      <button
-        data-filter="writings"
-        class="filter-btn px-4 py-2 rounded-lg border border-[var(--border)] hover:bg-[var(--surface)] transition-colors"
-      >
-        Blog posts
-      </button>
-      <button
-        data-filter="memos"
-        class="filter-btn px-4 py-2 rounded-lg border border-[var(--border)] hover:bg-[var(--surface)] transition-colors"
-      >
-        Memos
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search
       </button>
     </div>
+
+    <!-- Search Dialog -->
+    <dialog id="search-dialog" class="search-dialog">
+      <div class="search-dialog-content">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg font-semibold">Search writings</h2>
+          <button id="search-dialog-close" class="p-1 rounded hover:bg-[var(--surface)] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div id="pagefind-container"></div>
+      </div>
+    </dialog>
 
     <!-- Posts grouped by year -->
     <div id="posts-grid">
@@ -162,6 +184,51 @@ function bannerUrl(postId: string, banner: string) {
 </Layout>
 
 <script>
+  // Search dialog
+  const searchBtn = document.getElementById("search-btn");
+  const searchDialog = document.getElementById("search-dialog") as HTMLDialogElement;
+  const searchDialogClose = document.getElementById("search-dialog-close");
+
+  let pagefindLoaded = false;
+
+  searchBtn?.addEventListener("click", () => {
+    searchDialog?.showModal();
+    if (!pagefindLoaded) {
+      pagefindLoaded = true;
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "/pagefind/pagefind-ui.css";
+      document.head.appendChild(link);
+
+      const script = document.createElement("script");
+      script.src = "/pagefind/pagefind-ui.js";
+      script.onload = () => {
+        // @ts-ignore
+        new window.PagefindUI({
+          element: "#pagefind-container",
+          showSubResults: true,
+          showImages: false,
+        });
+        const input = document.querySelector<HTMLInputElement>("#pagefind-container .pagefind-ui__search-input");
+        input?.focus();
+      };
+      document.head.appendChild(script);
+    } else {
+      const input = document.querySelector<HTMLInputElement>("#pagefind-container .pagefind-ui__search-input");
+      input?.focus();
+    }
+  });
+
+  searchDialogClose?.addEventListener("click", () => {
+    searchDialog?.close();
+  });
+
+  searchDialog?.addEventListener("click", (e) => {
+    if (e.target === searchDialog) {
+      searchDialog.close();
+    }
+  });
+
   // Client-side filtering
   const filterButtons = document.querySelectorAll(".filter-btn");
   const postCards = document.querySelectorAll(".post-card");

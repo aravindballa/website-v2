@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import cloudflare from "@astrojs/cloudflare";
+import pagefind from "astro-pagefind";
 
 import tailwindcss from "@tailwindcss/vite";
 
@@ -11,7 +12,11 @@ export default defineConfig({
   adapter: cloudflare({
     imageService: "passthrough",
   }),
-  integrations: [mdx()],
+  integrations: [mdx(), pagefind({
+    indexConfig: {
+      excludeSelectors: ["pre", "code"],
+    },
+  })],
 
   vite: {
     plugins: [tailwindcss()],
