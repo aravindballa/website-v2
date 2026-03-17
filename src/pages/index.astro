@@ -42,8 +42,8 @@ function formatDate(date: Date): string {
 <Layout title="Aravind Balla - Full Stack Javascript Engineer">
   <div class="space-y-16">
     <!-- Bio Section -->
-    <section class="max-w-none">
-      <div class="relative w-[150px] h-[150px] group mb-10" tabindex="0">
+    <section class="prose prose-lg dark:prose-invert max-w-none">
+      <div class="relative w-[150px] h-[150px] not-prose group mb-8" tabindex="0">
         <img
           src="/avatar-ascii.png"
           alt="Aravind Balla"
@@ -55,25 +55,29 @@ function formatDate(date: Date): string {
           class="w-full h-full rounded-full object-cover absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus:opacity-100"
         />
       </div>
-      <p class="text-2xl md:text-3xl leading-relaxed md:leading-relaxed text-[var(--muted)] font-light my-24">
-        Hey! I'm Aravind Balla. I'm a <span class="bio-reveal-trigger">full-stack builder</span> who loves to solve problems.
-        <span class="bio-reveal blurred">I currently work at
-        <a href="https://paperpile.com/?welcome" class="bio-pill"><img src="https://www.google.com/s2/favicons?domain=paperpile.com&sz=32" alt="" class="bio-pill-icon" />Paperpile</a>
-        where we build tools used by thousands of scientists and students
-        for research. On the side, I run
-        <a href="https://caffeineletter.com/?utm_source=aravindballa.com" class="bio-pill"><img src="https://www.google.com/s2/favicons?domain=caffeineletter.com&sz=32" alt="" class="bio-pill-icon" />caffeineletter</a>,
-        a weekly newsletter about brewing <em>cafe-quality</em> coffee at home,
-        and <a href="https://stackblocks.app/?utm_source=aravindballa.com" class="bio-pill"><img src="https://www.google.com/s2/favicons?domain=stackblocks.app&sz=32" alt="" class="bio-pill-icon" />Stackblocks</a>,
-        no-code embeddable widgets for your website.</span>
-        I <span class="bio-reveal-trigger" data-reveal="writings-section">write</span> about building things with AI, web, and whatever I'm learning.
-        I live in Hyderabad, India.
-        Find me on <a href="https://twitter.com/aravindballa" class="bio-link">𝕏</a>
-        and <a href="https://github.com/aravindballa" class="bio-link">GitHub</a>.
+      <h1 class="text-6xl font-bold font-poppins tracking-tight mb-8">
+        Aravind Balla
+      </h1>
+      <p class="text-xl text-[var(--muted)] mb-4">
+        I'm a <span class="builder-tooltip-trigger inline-block relative cursor-default border-b-2 border-dotted border-[var(--muted)]">Builder<span class="builder-tooltip absolute bottom-full left-0 mb-2 px-3 py-1.5 text-sm rounded-lg bg-[var(--foreground)] text-[var(--background)] whitespace-nowrap opacity-0 pointer-events-none transition-all duration-200 translate-y-1">Full Stack Dev</span></span> from Hyderabad, India.
+      </p>
+      <p class="text-xl text-[var(--muted)]">
+        I currently work at <a
+          href="https://paperpile.com/?welcome"
+          class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline"
+          >Paperpile</a
+        > where we are building tools – Paperpile and
+        <a
+          href="https://bibguru.com/"
+          class="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline"
+          >BibGuru</a
+        >, which are used by thousands of scientists and students for research
+        from all over the world.
       </p>
     </section>
 
     <!-- Recent Posts Section -->
-    <section id="writings-section" class="bio-reveal invisible">
+    <section>
       <div class="flex items-center justify-between mb-8">
         <h2 class="text-2xl font-bold font-poppins">
           Writings
@@ -132,7 +136,7 @@ function formatDate(date: Date): string {
       </div>
     </section>
 
-    <!-- Projects Section (commented out for now)
+    <!-- Projects Section -->
     <section>
       <h2 class="text-2xl font-bold font-poppins mb-8">Projects</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
@@ -183,42 +187,53 @@ function formatDate(date: Date): string {
         </div>
       </div>
     </section>
-    -->
 
   </div>
 </Layout>
 
 <script>
-  function getTarget(trigger: Element) {
-    const targetId = trigger.getAttribute("data-reveal");
-    return targetId
-      ? document.getElementById(targetId)
-      : trigger.closest("p")?.querySelector(".bio-reveal") as HTMLElement | null;
-  }
+  const trigger = document.querySelector(".builder-tooltip-trigger");
+  const tooltip = document.querySelector(".builder-tooltip");
+  if (trigger && tooltip) {
+    const labels = ["Full Stack Dev", "Prompter", "Newsletter Author", "Indie Dev"];
+    let index = 0;
+    let interval: ReturnType<typeof setInterval> | null = null;
 
-  function reveal(target: HTMLElement) {
-    if (target.classList.contains("invisible")) {
-      target.style.maxHeight = target.scrollHeight + "px";
-      target.style.opacity = "1";
-      target.style.pointerEvents = "auto";
-      target.classList.remove("invisible");
-      setTimeout(() => target.style.maxHeight = "none", 500);
-    } else {
-      target.classList.remove("blurred");
+    const el = tooltip as HTMLElement;
+
+    function animateIn() {
+      el.style.opacity = "1";
+      el.style.transform = "translateY(0)";
     }
-  }
 
-  document.querySelectorAll(".bio-reveal-trigger").forEach((trigger) => {
-    const target = getTarget(trigger);
-
-    trigger.addEventListener("click", () => { if (target) reveal(target); });
-
-    if (target?.classList.contains("blurred")) {
-      target.addEventListener("click", () => { reveal(target); });
-
-      target.addEventListener("mouseenter", () => trigger.classList.add("active"));
-      target.addEventListener("mouseleave", () => trigger.classList.remove("active"));
+    function animateOut() {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(4px)";
     }
-  });
+
+    function cycleLabel() {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(4px)";
+      setTimeout(() => {
+        index = (index + 1) % labels.length;
+        el.textContent = labels[index];
+        animateIn();
+      }, 200);
+    }
+
+    // init hidden state
+    animateOut();
+
+    trigger.addEventListener("mouseenter", () => {
+      index = 0;
+      el.textContent = labels[index];
+      animateIn();
+      interval = setInterval(cycleLabel, 1000);
+    });
+
+    trigger.addEventListener("mouseleave", () => {
+      animateOut();
+      if (interval) clearInterval(interval);
+    });
+  }
 </script>
-
