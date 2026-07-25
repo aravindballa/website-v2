@@ -2,10 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 
 const links = [
-  { href: 'https://x.com/aravindballa', label: 'Twitter / X' },
-  { href: 'https://www.instagram.com/aravindballa/', label: 'Instagram' },
-  { href: 'https://stackblocks.app', label: 'Stackblocks' },
-  { href: 'https://caffeineletter.com', label: 'Caffeineletter' },
+  { href: 'https://x.com/aravindballa', label: 'Twitter / X', domain: 'x.com' },
+  { href: 'https://www.instagram.com/aravindballa/', label: 'Instagram', domain: 'instagram.com' },
+  { href: 'https://stackblocks.app', label: 'Stackblocks', domain: 'stackblocks.app' },
+  { href: 'https://caffeineletter.com', label: 'Caffeineletter', domain: 'caffeineletter.com' },
 ];
 ---
 
@@ -36,8 +36,16 @@ const links = [
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          class="block w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 text-center font-medium text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+          class="relative flex w-full items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 font-medium text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
         >
+          <img
+            src={`https://www.google.com/s2/favicons?domain=${link.domain}&sz=64`}
+            alt=""
+            width="20"
+            height="20"
+            class="absolute left-5 h-5 w-5 rounded-sm"
+            loading="lazy"
+          />
           {link.label}
         </a>
       ))}
