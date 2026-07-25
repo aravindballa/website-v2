@@ -5,8 +5,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'poppins': ['Poppins', 'sans-serif'],
-        'work-sans': ['Work Sans Variable', 'Work Sans', 'sans-serif'],
+        'onest': ['Onest', 'sans-serif'],
       },
       colors: {
         'background': 'var(--background)',

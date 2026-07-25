@@ -3,19 +3,21 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @font-face {
-  font-family: 'Rethink Sans';
-  src: url('/fonts/RethinkSans-Variable.ttf') format('truetype');
-  font-weight: 400 800;
+  font-family: 'Onest';
   font-style: normal;
   font-display: swap;
+  font-weight: 100 900;
+  src: url('/fonts/onest-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
-  font-family: 'Rethink Sans';
-  src: url('/fonts/RethinkSans-Italic-Variable.ttf') format('truetype');
-  font-weight: 400 800;
-  font-style: italic;
+  font-family: 'Onest';
+  font-style: normal;
   font-display: swap;
+  font-weight: 100 900;
+  src: url('/fonts/onest-latin-ext-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 /* CSS Variables for theming */
@@ -44,14 +46,14 @@
 
 /* Apply theme colors */
 body {
-  font-family: 'Rethink Sans', sans-serif;
+  font-family: 'Onest', sans-serif;
   background-color: var(--background);
   color: var(--foreground);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Rethink Sans', sans-serif;
+  font-family: 'Onest', sans-serif;
   color: var(--headings);
   text-wrap: balance;
 }
@@ -116,7 +118,7 @@ h1, h2, h3, h4, h5, h6 {
   --pagefind-ui-tag: var(--surface);
   --pagefind-ui-border-width: 1px;
   --pagefind-ui-border-radius: 0.5rem;
-  --pagefind-ui-font: 'Rethink Sans', sans-serif;
+  --pagefind-ui-font: 'Onest', sans-serif;
 }
 
 .pagefind-ui__search-input:focus {
