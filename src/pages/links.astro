@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const links = [
+  { href: 'https://x.com/aravindballa', label: 'Twitter / X', domain: 'x.com' },
+  { href: 'https://www.instagram.com/aravindballa/', label: 'Instagram', domain: 'instagram.com' },
+  { href: 'https://stackblocks.app', label: 'Stackblocks', domain: 'stackblocks.app' },
+  { href: 'https://caffeineletter.com', label: 'Caffeineletter', domain: 'caffeineletter.com' },
+];
+---
+
+<Layout
+  title="Links"
+  description="Links to Aravind Balla on Twitter/X, Instagram, Stackblocks, and Caffeineletter"
+>
+  <div class="mx-auto max-w-md space-y-8">
+    <div class="flex items-center gap-5 rounded-2xl bg-[var(--surface)] px-5 py-5">
+      <img
+        src="/avatar.jpg"
+        alt="Aravind Balla"
+        class="h-20 w-20 shrink-0 rounded-full object-cover"
+      />
+      <div class="min-w-0">
+        <h1 class="text-2xl font-bold font-poppins tracking-tight">
+          Aravind Balla
+        </h1>
+        <p class="mt-1 text-[var(--muted)]">
+          Full Stack Developer
+        </p>
+      </div>
+    </div>
+
+    <nav class="flex flex-col gap-3" aria-label="Links">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="relative flex w-full items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 font-medium text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+        >
+          <img
+            src={`https://www.google.com/s2/favicons?domain=${link.domain}&sz=64`}
+            alt=""
+            width="20"
+            height="20"
+            class="absolute left-5 h-5 w-5 rounded-sm"
+            loading="lazy"
+          />
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</Layout>
