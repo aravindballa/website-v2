@@ -17,6 +17,9 @@ export default defineConfig({
       excludeSelectors: ["pre", "code"],
     },
   })],
+  redirects: {
+    "/blog": "/writings",
+  },
 
   vite: {
     plugins: [tailwindcss()],
