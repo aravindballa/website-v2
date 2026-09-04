@@ -4,6 +4,8 @@ date: 2026-09-04
 type: Post
 description: Workaround for using Figma MCP with unsupported harnesses.
 published: true
+tags:
+  - ai
 ---
 
 If you have used Figma MCP with Claude Code, you know it works like a charm.
@@ -34,14 +36,14 @@ Then we add MCP to omp by using these OAuth parameters (Once you add and the aut
 
 If you are using opencode, the config would look something like this.
 
-```json
+```js
 figma: {
   enabled: true,
-  type: remote,
-  url: https://mcp.figma.com/mcp,
+  type: "remote",
+  url: "https://mcp.figma.com/mcp",
   oauth: {
-    clientId: <client_id from response>,
-    clientSecret: <client_secret from response>
+    clientId: "<client_id from response>",
+    clientSecret: "<client_secret from response>"
   }
 }
 ```
