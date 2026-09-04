@@ -17,6 +17,12 @@ export default defineConfig({
       excludeSelectors: ["pre", "code"],
     },
   })],
+  redirects: {
+    "/blog": "/writings",
+    "/blog/[...slug]": "/writings/[...slug]",
+    "/api/rss.xml": "/rss.xml",
+    "/memos": "/writings?filter=memos",
+  },
 
   vite: {
     plugins: [tailwindcss()],
