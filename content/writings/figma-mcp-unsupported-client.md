@@ -4,8 +4,7 @@ date: 2026-09-04
 type: Post
 description: Workaround for using Figma MCP with unsupported harnesses.
 published: true
-tags:
-  - ai
+tags: "ai"
 ---
 
 If you have used Figma MCP with Claude Code, you know it works like a charm.
