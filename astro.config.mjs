@@ -18,8 +18,6 @@ export default defineConfig({
     },
   })],
   redirects: {
-    "/blog": "/writings",
-    "/blog/[...slug]": "/writings/[...slug]",
     "/api/rss.xml": "/rss.xml",
     "/memos": "/writings?filter=memos",
   },
