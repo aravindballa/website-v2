@@ -10,7 +10,7 @@ import {
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const posts = await getCollection("writings");
+  const posts = await getCollection("writings", ({ data }) => data.published !== false);
   return posts.map((post) => ({
     params: { slug: post.id },
     props: post,

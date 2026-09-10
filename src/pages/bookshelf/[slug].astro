@@ -63,7 +63,7 @@ if (readwiseMatch) {
     }
 
     // Check if there's a corresponding content note
-    const contentBooks = await getCollection("bookshelf");
+    const contentBooks = await getCollection("bookshelf", ({ data }) => data.published !== false);
     const matchedBook = contentBooks.find(
       (contentBook) => contentBook.id === slugify(book?.title || ""),
     );
@@ -76,7 +76,7 @@ if (readwiseMatch) {
 } else {
   // This might be a content book - check collection
   try {
-    const contentBooks = await getCollection("bookshelf");
+    const contentBooks = await getCollection("bookshelf", ({ data }) => data.published !== false);
     const book = contentBooks.find((contentBook) => contentBook.id === slug);
 
     if (book) {
@@ -124,7 +124,7 @@ function formatDate(date: Date | string | undefined): string {
     </h1>
 
     <div class="flex justify-between flex-col md:flex-row mb-8">
-      <p class="italic text-lg">By {bookData.author}</p>
+      {bookData.author && <p class="italic text-lg">By {bookData.author}</p>}
       {
         bookData.cover && (
           <img

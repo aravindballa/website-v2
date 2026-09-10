@@ -1,10 +1,20 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { createNotionLoaders, type NotionCollection } from '../utils/notion/loader';
 
 const contentBase = './content';
+const token = process.env.NOTION_TOKEN || import.meta.env.NOTION_TOKEN;
+const databaseId = process.env.NOTION_DATABASE_ID || import.meta.env.NOTION_DATABASE_ID;
+const source = process.env.CONTENT_SOURCE || import.meta.env.CONTENT_SOURCE || (token || databaseId ? 'notion' : 'local');
+if (!['local', 'notion'].includes(source)) throw new Error('CONTENT_SOURCE must be local or notion.');
+if (source === 'notion' && (!token || !databaseId)) throw new Error('Set both NOTION_TOKEN and NOTION_DATABASE_ID to load content from Notion.');
+const notionLoader = source === 'notion' ? createNotionLoaders(token, databaseId) : undefined;
+const loader = (collection: NotionCollection) => notionLoader
+  ? notionLoader(collection)
+  : glob({ pattern: '**/*.{md,mdx}', base: `${contentBase}/${collection}` });
 
 const writingsCollection = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: `${contentBase}/writings` }),
+  loader: loader('writings'),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -18,7 +28,7 @@ const writingsCollection = defineCollection({
 });
 
 const memosCollection = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: `${contentBase}/memos` }),
+  loader: loader('memos'),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -32,7 +42,7 @@ const memosCollection = defineCollection({
 });
 
 const bookshelfCollection = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: `${contentBase}/bookshelf` }),
+  loader: loader('bookshelf'),
   schema: z.object({
     title: z.string(),
     type: z.literal('BookNote'),
@@ -45,7 +55,7 @@ const bookshelfCollection = defineCollection({
 });
 
 const hackletterCollection = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: `${contentBase}/hackletter` }),
+  loader: loader('hackletter'),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -57,7 +67,7 @@ const hackletterCollection = defineCollection({
 });
 
 const talksCollection = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: `${contentBase}/talks` }),
+  loader: loader('talks'),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -71,7 +81,7 @@ const talksCollection = defineCollection({
 });
 
 const notesCollection = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: `${contentBase}/notes` }),
+  loader: loader('notes'),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date().optional(),

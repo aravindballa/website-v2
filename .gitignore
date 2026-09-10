@@ -17,6 +17,13 @@ pnpm-debug.log*
 .env
 .env.production
 .dev.vars
+.env.*
+!.env.example
+
+# Notion import working files and generated copies of uploaded media
+.notion-migration/
+public/notion-assets/
+.wrangler/
 
 # macOS-specific files
 .DS_Store

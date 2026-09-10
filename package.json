@@ -6,8 +6,9 @@
     "dev": "wrangler types && astro dev",
     "start": "wrangler types && astro dev",
     "build": "wrangler types && astro check && astro build",
-    "preview": "wrangler types && astro preview",
-    "astro": "astro"
+    "preview": "wrangler types && wrangler dev --local",
+    "astro": "astro",
+    "test:notion": "node --experimental-strip-types --test tests/notion.test.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -22,6 +23,7 @@
     "typescript": "^5.8.3"
   },
   "devDependencies": {
+    "@astrojs/markdown-remark": "6.3.2",
     "node-addon-api": "^8.5.0",
     "node-gyp": "^12.2.0",
     "wrangler": "^4.66.0"

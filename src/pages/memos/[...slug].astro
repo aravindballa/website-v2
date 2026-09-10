@@ -7,7 +7,7 @@ import { calculateReadingTime, formatReadingTime } from '../../utils/readingTime
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const memos = await getCollection('memos');
+  const memos = await getCollection('memos', ({ data }) => data.published !== false);
   return memos.map((memo) => ({
     params: { slug: memo.id },
     props: memo,
