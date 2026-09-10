@@ -1,4 +1,8 @@
-# Astro Starter Kit: Minimal
+# Aravind Balla's website
+
+Astro 5 website with content managed in Notion. See [Notion setup and publishing](docs/notion.md) for credentials, database properties, the migration record, and the build workflow. Start with `.env.example` and Node 22.
+
+## Astro starter reference
 
 ```sh
 npm create astro@latest -- --template minimal

@@ -8,7 +8,8 @@
     "build": "wrangler types && astro check && astro build",
     "preview": "wrangler types && wrangler dev --local",
     "astro": "astro",
-    "test:notion": "node --experimental-strip-types --test tests/notion.test.ts"
+    "test:notion": "node --experimental-strip-types --test tests/notion.test.ts",
+    "notion:prepare-import": "node scripts/prepare-notion-import.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -24,6 +25,8 @@
   },
   "devDependencies": {
     "@astrojs/markdown-remark": "6.3.2",
+    "github-slugger": "^2.0.0",
+    "js-yaml": "^4.1.0",
     "node-addon-api": "^8.5.0",
     "node-gyp": "^12.2.0",
     "wrangler": "^4.66.0"

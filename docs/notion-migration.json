@@ -1,0 +1,845 @@
+{
+  "databaseId": "3d7116c5-4027-8039-b31d-ccf190c96b82",
+  "dataSourceId": "3d7116c5-4027-80db-af0e-000bd3812d3e",
+  "pages": [
+    {
+      "pageId": "3d7116c5-4027-8133-a1f3-d7a0dd050ec4",
+      "url": "https://app.notion.com/p/3d7116c540278133a1f3d7a0dd050ec4?pvs=204",
+      "sourcePath": "content/.haptic/daily/2024-09-05.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "collection": "notes",
+      "slug": "2024-09-05",
+      "published": false
+    },
+    {
+      "pageId": "3d7116c5-4027-81cc-bbe5-c5436d983431",
+      "url": "https://app.notion.com/p/3d7116c5402781ccbbe5c5436d983431?pvs=204",
+      "sourcePath": "content/bookshelf/show-your-work.md",
+      "sha256": "3e03897ae6f2e25383204cebbb27f590c2d1588a71fa9177677bedb5d608f2c0",
+      "collection": "bookshelf",
+      "slug": "show-your-work",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81de-a509-e3c5381c2163",
+      "url": "https://app.notion.com/p/3d7116c5402781dea509e3c5381c2163?pvs=204",
+      "sourcePath": "content/hackletter/01.md",
+      "sha256": "12545856b2a4fe2c988d87b766545090fedb3fce6fbe51ff01fb65f1e995823f",
+      "collection": "hackletter",
+      "slug": "01",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8109-91d7-f3786a9b5e2d",
+      "url": "https://app.notion.com/p/3d7116c54027810991d7f3786a9b5e2d?pvs=204",
+      "sourcePath": "content/hackletter/02.md",
+      "sha256": "b478eb1c8ccf7f6fb006d10d3ccc4676f8837ace8af798fca8e92e83dad4147e",
+      "collection": "hackletter",
+      "slug": "02",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-812a-8dda-cd813619143d",
+      "url": "https://app.notion.com/p/3d7116c54027812a8ddacd813619143d?pvs=204",
+      "sourcePath": "content/hackletter/03.md",
+      "sha256": "05d9da93271b5480d8053046eedd71a76947bc992303c41d0acd218642b0f410",
+      "collection": "hackletter",
+      "slug": "03",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8199-82a8-c89da113a3c8",
+      "url": "https://app.notion.com/p/3d7116c54027819982a8c89da113a3c8?pvs=204",
+      "sourcePath": "content/hackletter/04.md",
+      "sha256": "ebeff88802ac3086e7bfa7621fc5d2475c92c705a9598bfd79df33c47829ca1e",
+      "collection": "hackletter",
+      "slug": "04",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-815b-ba9f-c74af91d4c8e",
+      "url": "https://app.notion.com/p/3d7116c54027815bba9fc74af91d4c8e?pvs=204",
+      "sourcePath": "content/hackletter/05.md",
+      "sha256": "b5eea531e096f184d16755f7a08b952733f4596abb3258103746afea83cea704",
+      "collection": "hackletter",
+      "slug": "05",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8109-9d22-c7d69549db5d",
+      "url": "https://app.notion.com/p/3d7116c5402781099d22c7d69549db5d?pvs=204",
+      "sourcePath": "content/hackletter/06.md",
+      "sha256": "00a6e34773410fd807df43d51dc7844d48873eeca45c01dbbe6262ccf6f1a763",
+      "collection": "hackletter",
+      "slug": "06",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8141-8d46-ef6d693b1956",
+      "url": "https://app.notion.com/p/3d7116c5402781418d46ef6d693b1956?pvs=204",
+      "sourcePath": "content/hackletter/07.md",
+      "sha256": "accd7e7b788d4fc1354c9ea614da5efa87415d42730edc9095dbd2a2cb01f1cd",
+      "collection": "hackletter",
+      "slug": "07",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81ac-9b97-e2607a013124",
+      "url": "https://app.notion.com/p/3d7116c5402781ac9b97e2607a013124?pvs=204",
+      "sourcePath": "content/hackletter/08.md",
+      "sha256": "61080b9302038e65e1fddae2ace410947a7acc07cc8d7530bde8c0186237b498",
+      "collection": "hackletter",
+      "slug": "08",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8141-9b52-e8533ba43a9f",
+      "url": "https://app.notion.com/p/3d7116c5402781419b52e8533ba43a9f?pvs=204",
+      "sourcePath": "content/hackletter/09.md",
+      "sha256": "08c567be284c8b176d376765558cb895902a6355e48866fcd00054b41040da49",
+      "collection": "hackletter",
+      "slug": "09",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8144-a955-ce0ad9a455c5",
+      "url": "https://app.notion.com/p/3d7116c540278144a955ce0ad9a455c5?pvs=204",
+      "sourcePath": "content/hackletter/10.md",
+      "sha256": "48fe3e00a1fb666f5640574a7c93faea22ff15858de3c01dabb94a4da2a05f7b",
+      "collection": "hackletter",
+      "slug": "10",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8196-9cfd-d817518d6b9c",
+      "url": "https://app.notion.com/p/3d7116c5402781969cfdd817518d6b9c?pvs=204",
+      "sourcePath": "content/hackletter/11.md",
+      "sha256": "f8914d71f9d42d76fe923b5e3f2e4db229e0bded029c7575edd1d06d10a146d7",
+      "collection": "hackletter",
+      "slug": "11",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8174-bda2-de5a4a16e567",
+      "url": "https://app.notion.com/p/3d7116c540278174bda2de5a4a16e567?pvs=204",
+      "sourcePath": "content/hackletter/12.md",
+      "sha256": "5c43f20b9d11cc9f09ccc510349909def1e0af0fda58de84ed8022442898c418",
+      "collection": "hackletter",
+      "slug": "12",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81e6-955a-e111297622d8",
+      "url": "https://app.notion.com/p/3d7116c5402781e6955ae111297622d8?pvs=204",
+      "sourcePath": "content/hackletter/13.md",
+      "sha256": "c1ff0e3b8113171324098cbf19eb9ada96a3635241a03a7afbabc5ecaf38d85f",
+      "collection": "hackletter",
+      "slug": "13",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8168-8069-eef66d35bdcf",
+      "url": "https://app.notion.com/p/3d7116c5402781688069eef66d35bdcf?pvs=204",
+      "sourcePath": "content/hackletter/14.md",
+      "sha256": "053be68789d19c20bf561d52f2bffe6ad0e20c7ab812b2e96d2e657cf860dac8",
+      "collection": "hackletter",
+      "slug": "14",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-816e-ade6-e0dfba7a0135",
+      "url": "https://app.notion.com/p/3d7116c54027816eade6e0dfba7a0135?pvs=204",
+      "sourcePath": "content/hackletter/15.md",
+      "sha256": "919b258761e4935e1367e88af5c4b87ec4f352dd6a6cf491cd467a95cf90d271",
+      "collection": "hackletter",
+      "slug": "15",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81b6-b53e-c98d75842538",
+      "url": "https://app.notion.com/p/3d7116c5402781b6b53ec98d75842538?pvs=204",
+      "sourcePath": "content/hackletter/16.md",
+      "sha256": "ebe6219928af796df6bba815fcda69829b4086c57497df017a516fa387e2977f",
+      "collection": "hackletter",
+      "slug": "16",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-817e-86bd-e5208eb6dcd9",
+      "url": "https://app.notion.com/p/3d7116c54027817e86bde5208eb6dcd9?pvs=204",
+      "sourcePath": "content/hackletter/17.md",
+      "sha256": "02c16032e2247df6931e8b0b59fdcb62b9b5e4adb2e67e722eb8ffb0323157e1",
+      "collection": "hackletter",
+      "slug": "17",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8188-b935-d9da5bd5a64c",
+      "url": "https://app.notion.com/p/3d7116c540278188b935d9da5bd5a64c?pvs=204",
+      "sourcePath": "content/hackletter/18.md",
+      "sha256": "7fe92f0c8b9cf312a85c218f7fd353c701cdb3ce661a9693cc0b1e50dc21a8d3",
+      "collection": "hackletter",
+      "slug": "18",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8196-bb98-ede66b17a396",
+      "url": "https://app.notion.com/p/3d7116c540278196bb98ede66b17a396?pvs=204",
+      "sourcePath": "content/hackletter/19.md",
+      "sha256": "2b811244f796c4d719839f0c89279991e804fe0a8c7f32b6585cfe98c2636bcb",
+      "collection": "hackletter",
+      "slug": "19",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8173-bfe2-cb727a1ba83d",
+      "url": "https://app.notion.com/p/3d7116c540278173bfe2cb727a1ba83d?pvs=204",
+      "sourcePath": "content/hackletter/20.md",
+      "sha256": "2f6796ab5a25b94d032ee9fc61af68d87ea630429915712b4c29ff2dd07ade5d",
+      "collection": "hackletter",
+      "slug": "20",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81de-bcdb-f7156f51d699",
+      "url": "https://app.notion.com/p/3d7116c5402781debcdbf7156f51d699?pvs=204",
+      "sourcePath": "content/hackletter/21.md",
+      "sha256": "f175941c1502f95b102af1049f09426e2d417ac17753fde9acc1e5b863c24ef0",
+      "collection": "hackletter",
+      "slug": "21",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81b4-87dd-c4dad1ac43b9",
+      "url": "https://app.notion.com/p/3d7116c5402781b487ddc4dad1ac43b9?pvs=204",
+      "sourcePath": "content/hackletter/22.md",
+      "sha256": "d6a108c6fa3557728e0a22e627a6fcf0263441cd84196c7dc1fba1f1854e6c17",
+      "collection": "hackletter",
+      "slug": "22",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8122-82fa-cc190f6c5fe6",
+      "url": "https://app.notion.com/p/3d7116c54027812282facc190f6c5fe6?pvs=204",
+      "sourcePath": "content/hackletter/23.md",
+      "sha256": "7c78f380f160be86a111e3ce1c9b8d74dd6f4b16674cbef1f5004e53cbbb9ec3",
+      "collection": "hackletter",
+      "slug": "23",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81dd-b22e-fdb3103e669f",
+      "url": "https://app.notion.com/p/3d7116c5402781ddb22efdb3103e669f?pvs=204",
+      "sourcePath": "content/memos/Battle Against Unconscious Behaviours.md",
+      "sha256": "93350299503cc4f6aa4cb493622b54f72df30be23961f9e3c7201afef141c48b",
+      "collection": "memos",
+      "slug": "battle-against-unconscious-behaviours",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8110-b38c-ce9f41f9a44d",
+      "url": "https://app.notion.com/p/3d7116c540278110b38cce9f41f9a44d?pvs=204",
+      "sourcePath": "content/memos/Fine Tuning misconception.md",
+      "sha256": "2c728df4fcaf5ece4ddfecbc434aecb32fe56647f401da5a20254f2df5bdc3b5",
+      "collection": "memos",
+      "slug": "fine-tuning-misconception",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81cd-81fa-cf112b95c5f2",
+      "url": "https://app.notion.com/p/3d7116c5402781cd81facf112b95c5f2?pvs=204",
+      "sourcePath": "content/memos/Had to limit my side projects to only humans.md",
+      "sha256": "a3913a1ec4d657d0b813e2c7f880f39431669b2377b0916c9c28fddf7bc42cd0",
+      "collection": "memos",
+      "slug": "had-to-limit-my-side-projects-to-only-humans",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81d8-822e-f152aa12b44c",
+      "url": "https://app.notion.com/p/3d7116c5402781d8822ef152aa12b44c?pvs=204",
+      "sourcePath": "content/memos/I asked Speakers what makes a good Tech Talk.md",
+      "sha256": "ea14f9165b91513df2b76a5a2875318230b13c3efae6d3fb5a0c3b7f5eb69759",
+      "collection": "memos",
+      "slug": "i-asked-speakers-what-makes-a-good-tech-talk",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81c2-b0ce-e1d16de24a53",
+      "url": "https://app.notion.com/p/3d7116c5402781c2b0cee1d16de24a53?pvs=204",
+      "sourcePath": "content/memos/Infinite feeds are robbing the joy of your life.md",
+      "sha256": "26b34284d92b7746341f3159055d98101319f9fae13c4082b2a9199789e52153",
+      "collection": "memos",
+      "slug": "infinite-feeds-are-robbing-the-joy-of-your-life",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-815a-80b6-f94536275cf9",
+      "url": "https://app.notion.com/p/3d7116c54027815a80b6f94536275cf9?pvs=204",
+      "sourcePath": "content/memos/Journaling on physical notebooks.md",
+      "sha256": "505335ea1e70cf3cd32059bc46ff169fff2bdccf59aa095746953f133f6d3b23",
+      "collection": "memos",
+      "slug": "journaling-on-physical-notebooks",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81a3-aef3-fcd106d2e51a",
+      "url": "https://app.notion.com/p/3d7116c5402781a3aef3fcd106d2e51a?pvs=204",
+      "sourcePath": "content/memos/Maximizing Deep Work Hours - A Personal Experiment.md",
+      "sha256": "ac009be668ed600dbc7372f6a321251c4c1968be5c1c65f285e225b304d455d1",
+      "collection": "memos",
+      "slug": "maximizing-deep-work-hours---a-personal-experiment",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8143-93fe-dd8296cafab6",
+      "url": "https://app.notion.com/p/3d7116c54027814393fedd8296cafab6?pvs=204",
+      "sourcePath": "content/memos/Owning your Platforms - Why and The Good Parts.md",
+      "sha256": "7149fb8540985214895df1626f8aad79cd8d46b9a3a320ed3ba3e85ef752223c",
+      "collection": "memos",
+      "slug": "owning-your-platforms---why-and-the-good-parts",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8145-afdc-c1915911d5c7",
+      "url": "https://app.notion.com/p/3d7116c540278145afdcc1915911d5c7?pvs=204",
+      "sourcePath": "content/memos/State of Time Tracking.md",
+      "sha256": "20d4f28b87b2908abd8a12715ae4917cefc87712afa5a38a2a94e638ecec5267",
+      "collection": "memos",
+      "slug": "state-of-time-tracking",
+      "published": false
+    },
+    {
+      "pageId": "3d7116c5-4027-81f9-b5d8-d784324e1459",
+      "url": "https://app.notion.com/p/3d7116c5402781f9b5d8d784324e1459?pvs=204",
+      "sourcePath": "content/memos/Taking advice from others.md",
+      "sha256": "4fa0ec256db3177ceb03c82225b876d8c771d44309b13ec68bc3f6b272255efb",
+      "collection": "memos",
+      "slug": "taking-advice-from-others",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81dc-979d-c8e1704af382",
+      "url": "https://app.notion.com/p/3d7116c5402781dc979dc8e1704af382?pvs=204",
+      "sourcePath": "content/memos/Tracking Mood - Can you really do it.md",
+      "sha256": "76fc747fa355cd6c9bec29419bb0c36797d38f8ddc04304045d208706f679f27",
+      "collection": "memos",
+      "slug": "tracking-mood---can-you-really-do-it",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8166-8006-d794bd4b89de",
+      "url": "https://app.notion.com/p/3d7116c5402781668006d794bd4b89de?pvs=204",
+      "sourcePath": "content/memos/What I dont like about owning your platforms.md",
+      "sha256": "f6e42f645d59b8d659848ad33c3bc17f58537b7f36b00aa00903ff402f76741c",
+      "collection": "memos",
+      "slug": "what-i-dont-like-about-owning-your-platforms",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-818c-82cf-caa5b28a450d",
+      "url": "https://app.notion.com/p/3d7116c54027818c82cfcaa5b28a450d?pvs=204",
+      "sourcePath": "content/memos/Why play games you have already won.md",
+      "sha256": "22c3e60110d8c95ffef330ace8447aaf0e6e076ef4ecf83c899da74082a54626",
+      "collection": "memos",
+      "slug": "why-play-games-you-have-already-won",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81df-b0fc-f2898d9f14b4",
+      "url": "https://app.notion.com/p/3d7116c5402781dfb0fcf2898d9f14b4?pvs=204",
+      "sourcePath": "content/memos/Why write memos everyday.md",
+      "sha256": "65ad590fa9bc64746448d628739b1114d7dd203791470ffc1c8201e902b54209",
+      "collection": "memos",
+      "slug": "why-write-memos-everyday",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8133-aebd-c7438b2519bc",
+      "url": "https://app.notion.com/p/3d7116c540278133aebdc7438b2519bc?pvs=204",
+      "sourcePath": "content/memos/Working from cafes.md",
+      "sha256": "638d39fcf39e839cf26e83b207342b4946b7d8d6ad06222fca64f859165a8b64",
+      "collection": "memos",
+      "slug": "working-from-cafes",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81e4-9a36-df44932aa94f",
+      "url": "https://app.notion.com/p/3d7116c5402781e49a36df44932aa94f?pvs=204",
+      "sourcePath": "content/memos/You hate olives today.md",
+      "sha256": "b1a8cfcd755128458a985d3d935afd4535f321029bacc568f504c33130ff5e84",
+      "collection": "memos",
+      "slug": "you-hate-olives-today",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8145-a8f1-dc83ce9da6c6",
+      "url": "https://app.notion.com/p/3d7116c540278145a8f1dc83ce9da6c6?pvs=204",
+      "sourcePath": "content/notes/on-authenticity.md",
+      "sha256": "4b70bb93558d1ff14bed7118939fa2ce2eeaed731e557771dc47ae3d6745f8d5",
+      "collection": "notes",
+      "slug": "on-authenticity",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8192-b89a-f6578b31e49a",
+      "url": "https://app.notion.com/p/3d7116c540278192b89af6578b31e49a?pvs=204",
+      "sourcePath": "content/talks/devfest-19.mdx",
+      "sha256": "f6cb941de2e1eaead5974173f45bfe2960bf2e74e9473e8affb29d823db03c4a",
+      "collection": "talks",
+      "slug": "devfest-19",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8106-9df1-de073208a9f9",
+      "url": "https://app.notion.com/p/3d7116c5402781069df1de073208a9f9?pvs=204",
+      "sourcePath": "content/The Stackblocks Story.md",
+      "sha256": "8d62f1a70612d908cf3262d2bc3136af438793a85b58049eccacb8eb08a1ef6a",
+      "collection": "notes",
+      "slug": "the-stackblocks-story",
+      "published": false
+    },
+    {
+      "pageId": "3d7116c5-4027-814f-aac3-c20c7ad7f01d",
+      "url": "https://app.notion.com/p/3d7116c54027814faac3c20c7ad7f01d?pvs=204",
+      "sourcePath": "content/writings/advanced-git-tips.md",
+      "sha256": "97753b327ef2a3767762114b9d7418696ab8c7512958e5d07eb6248c393861ac",
+      "collection": "writings",
+      "slug": "advanced-git-tips",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8120-9a98-f3c1d3715463",
+      "url": "https://app.notion.com/p/3d7116c5402781209a98f3c1d3715463?pvs=204",
+      "sourcePath": "content/writings/ai-coworker.mdx",
+      "sha256": "dfa634f3093722610bac857349568d46e40c8a616367b127873bb86705207b24",
+      "collection": "writings",
+      "slug": "ai-coworker",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8165-b89c-eba384d1b319",
+      "url": "https://app.notion.com/p/3d7116c540278165b89ceba384d1b319?pvs=204",
+      "sourcePath": "content/writings/boring-things.mdx",
+      "sha256": "29e5d08a7001e6b7e9376aeef0c04ba7f3fde9c1503bd20189c5c3aa529d236d",
+      "collection": "writings",
+      "slug": "boring-things",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81fa-b62c-cae8b7cb5368",
+      "url": "https://app.notion.com/p/3d7116c5402781fab62ccae8b7cb5368?pvs=204",
+      "sourcePath": "content/writings/closing-loops-for-ai-using-ai.md",
+      "sha256": "636cb5b21642d96304a8482389e298cd36d9015f29e96a3a10db804e5f3ebe11",
+      "collection": "writings",
+      "slug": "closing-loops-for-ai-using-ai",
+      "published": false
+    },
+    {
+      "pageId": "3d7116c5-4027-811c-9386-f637fad0168e",
+      "url": "https://app.notion.com/p/3d7116c54027811c9386f637fad0168e?pvs=204",
+      "sourcePath": "content/writings/coffee.mdx",
+      "sha256": "d4eb6b7b2902fe29e372467e802c65f63d83fc9545857091b2ce308e2355aadd",
+      "collection": "writings",
+      "slug": "coffee",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8120-869d-c52fcc334ec4",
+      "url": "https://app.notion.com/p/3d7116c540278120869dc52fcc334ec4?pvs=204",
+      "sourcePath": "content/writings/consistent-place-to-write.mdx",
+      "sha256": "23f0e139211fd21733816b9d632cd5a852d7ac784ef3d69ab952b14274d0c5ba",
+      "collection": "writings",
+      "slug": "consistent-place-to-write",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81db-b71d-e861e7041a58",
+      "url": "https://app.notion.com/p/3d7116c5402781dbb71de861e7041a58?pvs=204",
+      "sourcePath": "content/writings/conversation-on-why-stackblocks.mdx",
+      "sha256": "776b687c07ba126f2bacd166a3d658214d6c94471e2010ba8b907935828214df",
+      "collection": "writings",
+      "slug": "conversation-on-why-stackblocks",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81f2-9f1a-e391f3c20d44",
+      "url": "https://app.notion.com/p/3d7116c5402781f29f1ae391f3c20d44?pvs=204",
+      "sourcePath": "content/writings/custom-hook-to-listen-websockets.mdx",
+      "sha256": "95585e69ab00befa27511daf624c557fc7b36ae27a257c4d7f860d4ac1875562",
+      "collection": "writings",
+      "slug": "custom-hook-to-listen-websockets",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81c5-8114-cc6fe27e8ff2",
+      "url": "https://app.notion.com/p/3d7116c5402781c58114cc6fe27e8ff2?pvs=204",
+      "sourcePath": "content/writings/dont-fetch-json.mdx",
+      "sha256": "ea24836b3b2693bbc4690b5568c4ba49e4d9f6e54ecab7d416629faf60e3a3eb",
+      "collection": "writings",
+      "slug": "dont-fetch-json",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81c7-ae94-e205953e756c",
+      "url": "https://app.notion.com/p/3d7116c5402781c7ae94e205953e756c?pvs=204",
+      "sourcePath": "content/writings/dont-optimize-early.md",
+      "sha256": "b542d9b8c389441d0341c39dab139201e2de0babd9358dd6ab4b59f607c8581a",
+      "collection": "writings",
+      "slug": "dont-optimize-early",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81c0-8784-e578904b5ee5",
+      "url": "https://app.notion.com/p/3d7116c5402781c08784e578904b5ee5?pvs=204",
+      "sourcePath": "content/writings/dont-wait.mdx",
+      "sha256": "19a46c363569c5d9f1d50f07b62ab73855523d20da5fc94665bd275e511f2cd8",
+      "collection": "writings",
+      "slug": "dont-wait",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81b6-a913-c92b1f9b3c64",
+      "url": "https://app.notion.com/p/3d7116c5402781b6a913c92b1f9b3c64?pvs=204",
+      "sourcePath": "content/writings/ending-your-coding-sessions-right.mdx",
+      "sha256": "156399fb36fcb84c9bb164a558b5eb6d0d74445f0c7ee563b765308982cfda5b",
+      "collection": "writings",
+      "slug": "ending-your-coding-sessions-right",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81ff-b94b-f6a18a1c8a96",
+      "url": "https://app.notion.com/p/3d7116c5402781ffb94bf6a18a1c8a96?pvs=204",
+      "sourcePath": "content/writings/fetching-things-at-once.mdx",
+      "sha256": "9be9197f097ac4c887af064104c4f946093c1b99ebeb4bf1135a4c434d6bb104",
+      "collection": "writings",
+      "slug": "fetching-things-at-once",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-811d-86da-ebd752fe5b97",
+      "url": "https://app.notion.com/p/3d7116c54027811d86daebd752fe5b97?pvs=204",
+      "sourcePath": "content/writings/figma-mcp-unsupported-client.md",
+      "sha256": "c39981895c8446a898e135869536828e5e856a6d4630dc9686912e0fa819304d",
+      "collection": "writings",
+      "slug": "figma-mcp-unsupported-client",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8164-b11b-c6c0a2afa249",
+      "url": "https://app.notion.com/p/3d7116c540278164b11bc6c0a2afa249?pvs=204",
+      "sourcePath": "content/writings/first-ever-interview.mdx",
+      "sha256": "4223f20d08a9085b15c6c00c177a11e254fb16dc5899e02c8541350d0cc86e96",
+      "collection": "writings",
+      "slug": "first-ever-interview",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81c9-9b29-f569d4cba74d",
+      "url": "https://app.notion.com/p/3d7116c5402781c99b29f569d4cba74d?pvs=204",
+      "sourcePath": "content/writings/gatsby-pages-from-rest.md",
+      "sha256": "2a1f64e4d33d5f74a6a4dff878c890d0c23c498f3ce2a27e6b9c303e3e6d1017",
+      "collection": "writings",
+      "slug": "gatsby-pages-from-rest",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8191-a96a-d76c0bd4ae80",
+      "url": "https://app.notion.com/p/3d7116c540278191a96ad76c0bd4ae80?pvs=204",
+      "sourcePath": "content/writings/gatsby-single-page-app.mdx",
+      "sha256": "f750f36ce5e19987538e0c559eec3873060ebd14e704ec83b10342f7dd8a6ee7",
+      "collection": "writings",
+      "slug": "gatsby-single-page-app",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8130-928c-f7eaf7dafd62",
+      "url": "https://app.notion.com/p/3d7116c540278130928cf7eaf7dafd62?pvs=204",
+      "sourcePath": "content/writings/gatsby-without-graphql.mdx",
+      "sha256": "db2eae5703a82e6b43acd3f109a4d0170f1a38402ffd80452dc68cd00459ab26",
+      "collection": "writings",
+      "slug": "gatsby-without-graphql",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-819b-824c-c63f39bb072a",
+      "url": "https://app.notion.com/p/3d7116c54027819b824cc63f39bb072a?pvs=204",
+      "sourcePath": "content/writings/getting-out-of-perfectionism-and-shipping.md",
+      "sha256": "fed5d30e8663509f8da0910f816943d18ed6e950f773c776aae36df75ae9490a",
+      "collection": "writings",
+      "slug": "getting-out-of-perfectionism-and-shipping",
+      "published": false
+    },
+    {
+      "pageId": "3d7116c5-4027-81d4-952f-d55d5e3f0f45",
+      "url": "https://app.notion.com/p/3d7116c5402781d4952fd55d5e3f0f45?pvs=204",
+      "sourcePath": "content/writings/getting-work-done.md",
+      "sha256": "a166a34d0de0defe97dbd143acf0cd0a2f056da8e23f83b411e50e6a75a0dc9f",
+      "collection": "writings",
+      "slug": "getting-work-done",
+      "published": false
+    },
+    {
+      "pageId": "3d7116c5-4027-8106-ab9b-d236ebeb7b49",
+      "url": "https://app.notion.com/p/3d7116c540278106ab9bd236ebeb7b49?pvs=204",
+      "sourcePath": "content/writings/how-remote-work-changed-me.mdx",
+      "sha256": "ca388fb284c14fcfe0e5876df4a45ee65b76b03e2bd7a6cfd0c77ad572a4149c",
+      "collection": "writings",
+      "slug": "how-remote-work-changed-me",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-816b-ba46-c8595ae7ac26",
+      "url": "https://app.notion.com/p/3d7116c54027816bba46c8595ae7ac26?pvs=204",
+      "sourcePath": "content/writings/hunt-for-easy-and-cheap-newsletter-service.mdx",
+      "sha256": "4b1d36f4f7bd3e09ab7fc5e2d6440b0354ae4b7d33de1217ac16c4f45b84cf35",
+      "collection": "writings",
+      "slug": "hunt-for-easy-and-cheap-newsletter-service",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-816e-9ea0-eadb0a2283c2",
+      "url": "https://app.notion.com/p/3d7116c54027816e9ea0eadb0a2283c2?pvs=204",
+      "sourcePath": "content/writings/hyping-up.md",
+      "sha256": "45095e3d44e0307f5e6862012981c02e6cc6fdb69894ecda79eb8650415e40e5",
+      "collection": "writings",
+      "slug": "hyping-up",
+      "published": false
+    },
+    {
+      "pageId": "3d7116c5-4027-8192-8a37-d79f1226179e",
+      "url": "https://app.notion.com/p/3d7116c5402781928a37d79f1226179e?pvs=204",
+      "sourcePath": "content/writings/icloudpd-on-synology.md",
+      "sha256": "589acd8968db0cb197d33fdee6405acaad6e1e7b90e80e9e02acb7913c81c62a",
+      "collection": "writings",
+      "slug": "icloudpd-on-synology",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-811b-a366-d054db7b098d",
+      "url": "https://app.notion.com/p/3d7116c54027811ba366d054db7b098d?pvs=204",
+      "sourcePath": "content/writings/incremental-static-generation.mdx",
+      "sha256": "83916be22b1379fc0cfbdf1386d25db8a359ca089a58faa1bcd823daa8481e60",
+      "collection": "writings",
+      "slug": "incremental-static-generation",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-813c-8074-df7af56348b3",
+      "url": "https://app.notion.com/p/3d7116c54027813c8074df7af56348b3?pvs=204",
+      "sourcePath": "content/writings/indie-development-freedom.md",
+      "sha256": "7043a2846ede26dbb205f289444c17748ef07e83d106f6692ac5b409d92579b2",
+      "collection": "writings",
+      "slug": "indie-development-freedom",
+      "published": false
+    },
+    {
+      "pageId": "3d7116c5-4027-8119-a7a9-df9722b89d7a",
+      "url": "https://app.notion.com/p/3d7116c540278119a7a9df9722b89d7a?pvs=204",
+      "sourcePath": "content/writings/infinite-feeds.mdx",
+      "sha256": "8c2600d037981d71b227fc4a0171640e463b4a25177012bc4f191e5089e588f8",
+      "collection": "writings",
+      "slug": "infinite-feeds",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-817c-816d-ca3ab6a05439",
+      "url": "https://app.notion.com/p/3d7116c54027817c816dca3ab6a05439?pvs=204",
+      "sourcePath": "content/writings/jealous-of-others-shipping.md",
+      "sha256": "a9f74b904823e0d42a836244d7afb006efb6ab8eec942167df8160e89a672cb7",
+      "collection": "writings",
+      "slug": "jealous-of-others-shipping",
+      "published": false
+    },
+    {
+      "pageId": "3d7116c5-4027-815a-bd95-e8cf92412926",
+      "url": "https://app.notion.com/p/3d7116c54027815abd95e8cf92412926?pvs=204",
+      "sourcePath": "content/writings/key-to-reading-books.mdx",
+      "sha256": "d701825cbae950e81709bbe67292287dae24747961af49f9061a2982e8b5b9c9",
+      "collection": "writings",
+      "slug": "key-to-reading-books",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81b1-a14e-e1525e8efd99",
+      "url": "https://app.notion.com/p/3d7116c5402781b1a14ee1525e8efd99?pvs=204",
+      "sourcePath": "content/writings/making-progress-with-sacred-side-hustle-hours.mdx",
+      "sha256": "f2a5e323d19e2cbcd6e5c24f9c655d7086a8e032fae1fb134149ff270bdaa9d1",
+      "collection": "writings",
+      "slug": "making-progress-with-sacred-side-hustle-hours",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81ca-948a-caf838ac9de5",
+      "url": "https://app.notion.com/p/3d7116c5402781ca948acaf838ac9de5?pvs=204",
+      "sourcePath": "content/writings/manage-react-components-outside.mdx",
+      "sha256": "25bae66aeb54f6aa1a9d2067f634d5be7293c2a43fdf4814c61918e947f9a967",
+      "collection": "writings",
+      "slug": "manage-react-components-outside",
+      "published": true,
+      "format": "Markdown file"
+    },
+    {
+      "pageId": "3d7116c5-4027-81c8-aa8b-f2c1a33e1cb8",
+      "url": "https://app.notion.com/p/3d7116c5402781c8aa8bf2c1a33e1cb8?pvs=204",
+      "sourcePath": "content/writings/niche-down.md",
+      "sha256": "351403fc31f02da7b2ce52d3fd71253b167c9c20a64da68b2a2f7e9b34465ece",
+      "collection": "writings",
+      "slug": "niche-down",
+      "published": false
+    },
+    {
+      "pageId": "3d7116c5-4027-81c7-91bb-fd9a23514920",
+      "url": "https://app.notion.com/p/3d7116c5402781c791bbfd9a23514920?pvs=204",
+      "sourcePath": "content/writings/non-blocking-ui-react.mdx",
+      "sha256": "4cf0358a08b7578b78c6e6790bf58f83d8c7ed3f8abdd57b49bf1c407836f98c",
+      "collection": "writings",
+      "slug": "non-blocking-ui-react",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8156-808e-d4c052d81b82",
+      "url": "https://app.notion.com/p/3d7116c540278156808ed4c052d81b82?pvs=204",
+      "sourcePath": "content/writings/old-macbook-home-server.md",
+      "sha256": "88c09471bb45b307609e6240c01d6d4630a3847d7ee7670051b06589bf214211",
+      "collection": "writings",
+      "slug": "old-macbook-home-server",
+      "published": false
+    },
+    {
+      "pageId": "3d7116c5-4027-8195-863c-cc1a8c9eb068",
+      "url": "https://app.notion.com/p/3d7116c540278195863ccc1a8c9eb068?pvs=204",
+      "sourcePath": "content/writings/perfect-writing-setup.mdx",
+      "sha256": "ce9b231fc0923f8388f6bc0f88aedd4db944a940efb257ebc73203cfa851b5b3",
+      "collection": "writings",
+      "slug": "perfect-writing-setup",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-817f-b897-de312d28d697",
+      "url": "https://app.notion.com/p/3d7116c54027817fb897de312d28d697?pvs=204",
+      "sourcePath": "content/writings/playing-with-github-issues-for-digital-garden.mdx",
+      "sha256": "0e1931ab1aea7b097aa0ee8033e6b820b58f82ee369d498c5da831b9a1e03b58",
+      "collection": "writings",
+      "slug": "playing-with-github-issues-for-digital-garden",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81d4-8796-cda8f21444b2",
+      "url": "https://app.notion.com/p/3d7116c5402781d48796cda8f21444b2?pvs=204",
+      "sourcePath": "content/writings/polyphasic-sleep.md",
+      "sha256": "8a78c0fc61f931debf0d26885d909dd2273d6a6a265dc1fc4e1e74f4fcb952f3",
+      "collection": "writings",
+      "slug": "polyphasic-sleep",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8135-b497-dc957b0c49d3",
+      "url": "https://app.notion.com/p/3d7116c540278135b497dc957b0c49d3?pvs=204",
+      "sourcePath": "content/writings/position-yourself-for-remote-work.mdx",
+      "sha256": "c06ae5c605569bcf96c71898253ec088abc0c38189b9cdef74e2cf2b406b88ae",
+      "collection": "writings",
+      "slug": "position-yourself-for-remote-work",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8175-a107-d3402d1319d7",
+      "url": "https://app.notion.com/p/3d7116c540278175a107d3402d1319d7?pvs=204",
+      "sourcePath": "content/writings/preact-ssr.mdx",
+      "sha256": "2c4f68443855b4325d8d0a12ad343b888671a7dc9bf451808397c13513124bb5",
+      "collection": "writings",
+      "slug": "preact-ssr",
+      "published": true,
+      "format": "Markdown file"
+    },
+    {
+      "pageId": "3d7116c5-4027-8198-a1a5-fce237b0ec6d",
+      "url": "https://app.notion.com/p/3d7116c540278198a1a5fce237b0ec6d?pvs=204",
+      "sourcePath": "content/writings/prioritization-for-side-projects.mdx",
+      "sha256": "5f2bb848b399bbd645846433771cb9cc5beddecc62b4036dd63210aa1746fa0a",
+      "collection": "writings",
+      "slug": "prioritization-for-side-projects",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8152-9dad-cc2e299b60f2",
+      "url": "https://app.notion.com/p/3d7116c5402781529dadcc2e299b60f2?pvs=204",
+      "sourcePath": "content/writings/react-nexus-2023.md",
+      "sha256": "eb19defcc889d0c8eed1261357a097f9ab01372b1e8a96071b6122993d727ed7",
+      "collection": "writings",
+      "slug": "react-nexus-2023",
+      "published": false
+    },
+    {
+      "pageId": "3d7116c5-4027-811d-a6bc-fe5081f35df7",
+      "url": "https://app.notion.com/p/3d7116c54027811da6bcfe5081f35df7?pvs=204",
+      "sourcePath": "content/writings/run-clawbot-securely-on-a-vm.mdx",
+      "sha256": "932910d5a885ad0088831c44230de74cfa9126795882f888c254d2f62bacc6cf",
+      "collection": "writings",
+      "slug": "run-clawbot-securely-on-a-vm",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81a6-9abf-f34b80bcef61",
+      "url": "https://app.notion.com/p/3d7116c5402781a69abff34b80bcef61?pvs=204",
+      "sourcePath": "content/writings/second-brain.mdx",
+      "sha256": "c48059a2cc7e9f4e58126124d5877b9adddde79b288e8288d412d76d89a10be0",
+      "collection": "writings",
+      "slug": "second-brain",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-8122-90de-f17ff255d80f",
+      "url": "https://app.notion.com/p/3d7116c54027812290def17ff255d80f?pvs=204",
+      "sourcePath": "content/writings/siri-shortcuts-i-use.md",
+      "sha256": "bfb7f04b3f3985878e7b5e1bafefcc03821e93bc2e19d4eade546eb260184680",
+      "collection": "writings",
+      "slug": "siri-shortcuts-i-use",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81bf-a4c4-ee156d06e397",
+      "url": "https://app.notion.com/p/3d7116c5402781bfa4c4ee156d06e397?pvs=204",
+      "sourcePath": "content/writings/start-to-run.md",
+      "sha256": "d5817f9aaa35888db5ed40cc3d3d0208f7a306730c62efb9a6a6383ec5759519",
+      "collection": "writings",
+      "slug": "start-to-run",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81cb-8a51-e183fc7a8b91",
+      "url": "https://app.notion.com/p/3d7116c5402781cb8a51e183fc7a8b91?pvs=204",
+      "sourcePath": "content/writings/starting-podcast.mdx",
+      "sha256": "cb86b556c573870217810039595887f44947a89466b1a1b3e6a5897d71f51dba",
+      "collection": "writings",
+      "slug": "starting-podcast",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81ae-8c60-d03b677453cb",
+      "url": "https://app.notion.com/p/3d7116c5402781ae8c60d03b677453cb?pvs=204",
+      "sourcePath": "content/writings/talk-to-notes.mdx",
+      "sha256": "2a781189d6f35d493144a09d9b02f71c72068d12fdbd7ac5d32f43c3d2ecba79",
+      "collection": "writings",
+      "slug": "talk-to-notes",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81c1-b687-eaacc2dfdb6b",
+      "url": "https://app.notion.com/p/3d7116c5402781c1b687eaacc2dfdb6b?pvs=204",
+      "sourcePath": "content/writings/tweet-using-github-actions.mdx",
+      "sha256": "7e2aac28987aef770ef77e35cffd0230162d85346edb7fe7639ec750335d7369",
+      "collection": "writings",
+      "slug": "tweet-using-github-actions",
+      "published": true
+    },
+    {
+      "pageId": "3d7116c5-4027-81a7-8f5a-d9235e6ade1a",
+      "url": "https://app.notion.com/p/3d7116c5402781a78f5ad9235e6ade1a?pvs=204",
+      "sourcePath": "content/writings/weekly-review-in-roam-research.mdx",
+      "sha256": "d7610d9cd763adaec56ac4bfee960f75f2b46e57035e425907d3dfe82f576b13",
+      "collection": "writings",
+      "slug": "weekly-review-in-roam-research",
+      "published": true
+    }
+  ]
+}
