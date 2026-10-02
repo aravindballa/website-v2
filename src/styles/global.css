@@ -2,19 +2,32 @@
 @plugin '@tailwindcss/typography';
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme {
+  --font-sans: 'Funnel Sans', sans-serif;
+  --font-heading: 'Funnel Display', sans-serif;
+}
+
 @font-face {
-  font-family: 'Rethink Sans';
-  src: url('/fonts/RethinkSans-Variable.ttf') format('truetype');
-  font-weight: 400 800;
+  font-family: 'Funnel Sans';
+  src: url('/fonts/FunnelSans-Variable.ttf') format('truetype');
+  font-weight: 300 800;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Rethink Sans';
-  src: url('/fonts/RethinkSans-Italic-Variable.ttf') format('truetype');
-  font-weight: 400 800;
+  font-family: 'Funnel Sans';
+  src: url('/fonts/FunnelSans-Italic-Variable.ttf') format('truetype');
+  font-weight: 300 800;
   font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Funnel Display';
+  src: url('/fonts/FunnelDisplay-Variable.ttf') format('truetype');
+  font-weight: 300 800;
+  font-style: normal;
   font-display: swap;
 }
 
@@ -44,14 +57,14 @@
 
 /* Apply theme colors */
 body {
-  font-family: 'Rethink Sans', sans-serif;
+  font-family: var(--font-sans);
   background-color: var(--background);
   color: var(--foreground);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Rethink Sans', sans-serif;
+  font-family: var(--font-heading);
   color: var(--headings);
   text-wrap: balance;
 }
@@ -116,7 +129,7 @@ h1, h2, h3, h4, h5, h6 {
   --pagefind-ui-tag: var(--surface);
   --pagefind-ui-border-width: 1px;
   --pagefind-ui-border-radius: 0.5rem;
-  --pagefind-ui-font: 'Rethink Sans', sans-serif;
+  --pagefind-ui-font: var(--font-sans);
 }
 
 .pagefind-ui__search-input:focus {
@@ -125,6 +138,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pagefind-ui__result-link {
+  font-family: var(--font-heading);
   cursor: pointer;
   text-decoration: underline;
 }
