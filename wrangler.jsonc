@@ -7,6 +7,9 @@
     "binding": "ASSETS",
     "directory": "./dist"
   },
+  "secrets": {
+    "required": ["READWISE_TOKEN", "NOTION_TOKEN", "NOTION_DATABASE_ID"]
+  },
   "observability": {
     "enabled": true
   }
