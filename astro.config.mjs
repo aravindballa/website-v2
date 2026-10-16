@@ -9,6 +9,8 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://aravindballa.com",
   output: "server",
+  compressHTML: true,
+  session: false,
   adapter: cloudflare({
     imageService: "passthrough",
   }),

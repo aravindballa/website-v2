@@ -1,7 +1,7 @@
 ---
 export const prerender = false;
-const { env } = (Astro.locals as any).runtime || {};
 
+import { env } from "cloudflare:workers";
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
 import { getCollection, render } from "astro:content";
@@ -11,12 +11,6 @@ import {
   type ReadwiseHighlightsResponse,
   slugify,
 } from "../../utils/readwise";
-
-export async function getStaticPaths() {
-  // Return empty paths to enable on-demand generation like Next.js fallback: 'blocking'
-  // Pages will be generated when first accessed
-  return [];
-}
 
 const { slug } = Astro.params as { slug?: string };
 

@@ -1,6 +1,7 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
-import { createNotionLoaders, type NotionCollection } from '../utils/notion/loader';
+import { createNotionLoaders, type NotionCollection } from './utils/notion/loader';
 
 const contentBase = './content';
 const token = process.env.NOTION_TOKEN || import.meta.env.NOTION_TOKEN;

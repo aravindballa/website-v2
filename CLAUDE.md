@@ -14,7 +14,7 @@ No lint or test scripts configured.
 
 ## Architecture
 
-**Astro v5 SSR site** deployed to **Cloudflare Workers/Pages** via `@astrojs/cloudflare`. Uses MDX for content and Tailwind CSS v4 (via Vite plugin, not PostCSS).
+**Astro v7 SSR site** deployed to **Cloudflare Workers** via `@astrojs/cloudflare`. Uses MDX for content and Tailwind CSS v4 (via Vite plugin, not PostCSS).
 
 ### Rendering modes
 
@@ -24,14 +24,14 @@ No lint or test scripts configured.
 
 ### Content collections
 
-Six collections defined in `src/content/config.ts` with Zod schemas. Content lives in `/content/{collection}/` as `.md`/`.mdx` files. Each schema has a `type` literal discriminator (`'Post'`, `'Memo'`, `'BookNote'`, `'Letter'`, `'Talk'`, `'Note'`) and a `published` boolean for draft filtering.
+Six collections defined in `src/content.config.ts` with Zod schemas. Content lives in `/content/{collection}/` as `.md`/`.mdx` files. Each schema has a `type` literal discriminator (`'Post'`, `'Memo'`, `'BookNote'`, `'Letter'`, `'Talk'`, `'Note'`) and a `published` boolean for draft filtering.
 
 The homepage and `/writings/` combine `writings` + `memos` collections, sorted by date.
 
 ### Bookshelf — hybrid data
 
 - `/bookshelf/` index fetches book list from a Cloudflare Worker (`readwise-kv.aravindballa.workers.dev`)
-- `/bookshelf/[slug]` fetches highlights from `readwise.io/api/v2` using `READWISE_TOKEN` env var
+- `/bookshelf/[slug]` fetches highlights from `readwise.io/api/v2` using `READWISE_TOKEN` from `cloudflare:workers` env
 - Some books also have local content notes in `/content/bookshelf/`
 
 ### Styling
@@ -49,5 +49,5 @@ Single layout at `src/layouts/Layout.astro` handles SEO meta, dark mode script, 
 
 ### Environment
 
-- Node v20.5.0 (`.nvmrc`)
+- Node 22.22+ (`.nvmrc`)
 - `READWISE_TOKEN` required for bookshelf highlight fetching
