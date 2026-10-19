@@ -1,11 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import { getReadwiseBooks, type ReadwiseBook, formatDate, slugify } from '../../utils/readwise';
+import { env } from 'cloudflare:workers';
+import { getReadwiseLibrary, type ReadwiseBook, formatDate, slugify } from '../../utils/readwise';
 
-// Get Readwise books
-const booksData = await getReadwiseBooks();
-const books = booksData.results
+const library = await getReadwiseLibrary(env);
+const books = (library?.books ?? [])
   .filter((book: ReadwiseBook) => book.author !== null && book.num_highlights > 0)
   .sort((a: ReadwiseBook, b: ReadwiseBook) => 
     new Date(b.last_highlight_at).getTime() - new Date(a.last_highlight_at).getTime()

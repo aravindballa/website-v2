@@ -1,16 +1,33 @@
 {
-  "name": "website-v2",
-  "main": "@astrojs/cloudflare/entrypoints/server",
-  "compatibility_date": "2026-02-18",
-  "compatibility_flags": ["nodejs_compat"],
-  "assets": {
-    "binding": "ASSETS",
-    "directory": "./dist"
-  },
-  "secrets": {
-    "required": ["READWISE_TOKEN", "NOTION_TOKEN", "NOTION_DATABASE_ID"]
-  },
-  "observability": {
-    "enabled": true
-  }
+	"name": "website-v2",
+	"main": "./src/worker.ts",
+	"compatibility_date": "2026-02-18",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"assets": {
+		"binding": "ASSETS",
+		"directory": "./dist"
+	},
+	"kv_namespaces": [
+		{
+			"binding": "READWISE_KV",
+			"id": "70c5db130ca144e7ab14184e1b567405"
+		}
+	],
+	"triggers": {
+		"crons": [
+			"17 * * * *"
+		]
+	},
+	"secrets": {
+		"required": [
+			"READWISE_TOKEN",
+			"NOTION_TOKEN",
+			"NOTION_DATABASE_ID"
+		]
+	},
+	"observability": {
+		"enabled": true
+	}
 }

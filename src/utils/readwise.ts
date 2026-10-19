@@ -13,44 +13,88 @@ export interface ReadwiseBook {
   tags: string[];
 }
 
-export interface ReadwiseBooksResponse {
-  results: ReadwiseBook[];
-}
-
 export interface ReadwiseHighlight {
   id: number;
   text: string;
-  location: number;
   note: string;
-  color: string;
-  highlighted_at: string;
-  created_at: string;
-  updated_at: string;
-  external_id: string;
-  end_location: number;
-  url: string;
-  book_id: number;
-  tags: string[];
-  is_favorite: boolean;
-  is_discard: boolean;
-  readwise_url: string;
+  location: number | null;
+  highlighted_at: string | null;
 }
 
-export interface ReadwiseHighlightsResponse {
-  results: ReadwiseHighlight[];
+export interface ReadwiseLibrary {
+  syncedAt: string;
+  books: ReadwiseBook[];
+  highlightsByBook: Record<number, ReadwiseHighlight[]>;
 }
 
-export async function getReadwiseBooks(): Promise<ReadwiseBooksResponse> {
-  try {
-    const response = await fetch('https://readwise-kv.aravindballa.workers.dev/');
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+interface ExportedSource {
+  user_book_id: number;
+  highlights: (ReadwiseHighlight & { is_deleted: boolean })[];
+}
+
+const LIBRARY_KEY = 'readwise:library:v1';
+
+async function readwiseGet<T>(url: string, token: string): Promise<T> {
+  const response = await fetch(url, { headers: { Authorization: `TOKEN ${token}` } });
+  if (!response.ok) {
+    throw new Error(`Readwise ${url} failed with ${response.status}`);
+  }
+  return response.json() as Promise<T>;
+}
+
+async function fetchBooks(token: string): Promise<ReadwiseBook[]> {
+  const books: ReadwiseBook[] = [];
+  let url: string | null = 'https://readwise.io/api/v2/books/?category=books&page_size=1000';
+  while (url) {
+    const page: { results: ReadwiseBook[]; next: string | null } = await readwiseGet(url, token);
+    books.push(...page.results);
+    url = page.next;
+  }
+  return books;
+}
+
+async function fetchHighlightsByBook(
+  token: string,
+  bookIds: number[],
+): Promise<Record<number, ReadwiseHighlight[]>> {
+  const highlightsByBook: Record<number, ReadwiseHighlight[]> = {};
+  let cursor: string | null = null;
+  do {
+    const query = new URLSearchParams({ ids: bookIds.join(',') });
+    if (cursor) query.set('pageCursor', cursor);
+    const page: { results: ExportedSource[]; nextPageCursor: string | null } = await readwiseGet(
+      `https://readwise.io/api/v2/export/?${query}`,
+      token,
+    );
+    for (const source of page.results) {
+      highlightsByBook[source.user_book_id] = source.highlights
+        .filter((highlight) => !highlight.is_deleted)
+        .map(({ id, text, note, location, highlighted_at }) => ({ id, text, note, location, highlighted_at }));
     }
-    const data = await response.json() as ReadwiseBooksResponse;
-    return data;
+    cursor = page.nextPageCursor;
+  } while (cursor);
+  return highlightsByBook;
+}
+
+export async function syncReadwiseLibrary(env: Env): Promise<ReadwiseLibrary> {
+  const books = await fetchBooks(env.READWISE_TOKEN);
+  const highlightsByBook = await fetchHighlightsByBook(
+    env.READWISE_TOKEN,
+    books.map((book) => book.id),
+  );
+  const library: ReadwiseLibrary = { syncedAt: new Date().toISOString(), books, highlightsByBook };
+  await env.READWISE_KV.put(LIBRARY_KEY, JSON.stringify(library));
+  return library;
+}
+
+export async function getReadwiseLibrary(env: Env): Promise<ReadwiseLibrary | null> {
+  const cached = await env.READWISE_KV.get<ReadwiseLibrary>(LIBRARY_KEY, 'json');
+  if (cached) return cached;
+  try {
+    return await syncReadwiseLibrary(env);
   } catch (error) {
-    console.error('Error fetching Readwise books:', error);
-    return { results: [] };
+    console.error('Error syncing Readwise library:', error);
+    return null;
   }
 }
 

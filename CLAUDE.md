@@ -20,7 +20,7 @@ No lint or test scripts configured.
 
 - **SSR (default)**: `/`, `/writings/`, `/bookshelf/`, `/talks/`, `/rss.xml`
 - **Prerendered (static)**: `/writings/[slug]`, `/memos/[slug]` — set via `export const prerender = true`
-- **On-demand SSR**: `/bookshelf/[slug]` — fetches Readwise highlights at request time
+- **On-demand SSR**: `/bookshelf/[slug]` — reads Readwise highlights from KV
 
 ### Content collections
 
@@ -30,8 +30,8 @@ The homepage and `/writings/` combine `writings` + `memos` collections, sorted b
 
 ### Bookshelf — hybrid data
 
-- `/bookshelf/` index fetches book list from a Cloudflare Worker (`readwise-kv.aravindballa.workers.dev`)
-- `/bookshelf/[slug]` fetches highlights from `readwise.io/api/v2` using `READWISE_TOKEN` from `cloudflare:workers` env
+- `src/worker.ts` wraps the Astro handler and adds an hourly cron that syncs Readwise books plus every book highlight (export API) into one `READWISE_KV` key, `readwise:library:v1`
+- `/bookshelf/` and `/bookshelf/[slug]` read that key via `getReadwiseLibrary()`; an empty KV triggers one inline sync
 - Some books also have local content notes in `/content/bookshelf/`
 
 ### Styling
@@ -50,4 +50,4 @@ Single layout at `src/layouts/Layout.astro` handles SEO meta, dark mode script, 
 ### Environment
 
 - Node 22.22+ (`.nvmrc`)
-- `READWISE_TOKEN` required for bookshelf highlight fetching
+- `READWISE_TOKEN` required for the Readwise sync

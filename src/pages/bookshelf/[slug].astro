@@ -6,9 +6,8 @@ import Layout from "../../layouts/Layout.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
 import { getCollection, render } from "astro:content";
 import {
-  getReadwiseBooks,
-  type ReadwiseBook,
-  type ReadwiseHighlightsResponse,
+  getReadwiseLibrary,
+  type ReadwiseHighlight,
   slugify,
 } from "../../utils/readwise";
 
@@ -17,7 +16,7 @@ const { slug } = Astro.params as { slug?: string };
 // Check if this is a Readwise book (ends with -number)
 const readwiseMatch = slug?.match(/^(.+)-(\d+)$/);
 let bookData: any = null;
-let highlights: ReadwiseHighlightsResponse | null = null;
+let highlights: ReadwiseHighlight[] | null = null;
 let bookContent: any = null;
 
 if (readwiseMatch) {
@@ -25,27 +24,11 @@ if (readwiseMatch) {
   const [, titleSlug, bookId] = readwiseMatch;
 
   try {
-    // Only fetch highlights if we have a token
-    if (env?.READWISE_TOKEN) {
-      const highlightsResponse = await fetch(
-        `https://readwise.io/api/v2/highlights/?book_id=${bookId}`,
-        {
-          headers: {
-            Authorization: `TOKEN ${env.READWISE_TOKEN}`,
-          },
-        },
-      );
-
-      if (highlightsResponse.ok) {
-        highlights = await highlightsResponse.json();
-      }
+    const library = await getReadwiseLibrary(env);
+    const book = library?.books.find((book) => book.id.toString() === bookId);
+    if (library) {
+      highlights = library.highlightsByBook[Number(bookId)] ?? [];
     }
-
-    // Get book details from our cached data
-    const booksData = await getReadwiseBooks();
-    const book = booksData.results.find(
-      (book: ReadwiseBook) => book.id.toString() === bookId,
-    );
 
     if (book) {
       bookData = {
@@ -93,8 +76,8 @@ if (!bookData) {
   return new Response(null, { status: 404 });
 }
 
-const sortedHighlights = [...(highlights?.results ?? [])].sort(
-  (a, b) => a.location - b.location,
+const sortedHighlights = [...(highlights ?? [])].sort(
+  (a, b) => (a.location ?? 0) - (b.location ?? 0),
 );
 ---
 
